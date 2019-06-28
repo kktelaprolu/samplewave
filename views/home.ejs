@@ -19,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -308,7 +308,7 @@ $.ajax({
 }
         window.onload = function () {
 
-            var chart = new CanvasJS.Chart("chartContainer", {
+            var chart = new CanvasJS.Chart("chartContainer2", {
                 animationEnabled: true,
                 title: {
                     text: "2019-2020"
@@ -328,8 +328,88 @@ $.ajax({
                 }]
             });
             chart.render();
+         
+            var charts = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title:{
+		text: "Estimation"   
+	},
+	axisY:{
+		title:""
+	},
+	toolTip: {
+		shared: true,
+		reversed: true
+	},
+	data: [{
+		type: "stackedColumn",
+		
+		showInLegend: "true",
+		yValueFormatString: "#,##0mn ",
+		dataPoints: [
+			{ y: 111338 , label: "Leads" },
+			{ y: 49088, label: "Contacts" },
+			{ y: 62200, label: "Accounts" },
+			{ y: 90085, label: "Employees" },
+			{ y: 38600, label: "Opportunities" }
+		
+		]
+	},
+	{
+		type: "stackedColumn",
+	
+		showInLegend: "true",
+		yValueFormatString: "#,##0mn ",
+		dataPoints: [
+			{ y: 135305 , label: "Leads" },
+			{ y: 107922, label: "Contacts" },
+			{ y: 52300, label: "Accounts" },
+			{ y: 3360, label: "Employees" },
+			{ y: 39900, label: "Opportunities" }
+		
+		]
+	}]
+});
+charts.render();
 
-        }
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+	animationEnabled: true,  
+	title:{
+		text: "Revenue by Year"
+	},
+	axisY: {
+		title: "Revenue in USD",
+		valueFormatString: "#0,,.",
+		suffix: "mn",
+		prefix: "$"
+	},
+	data: [{
+		type: "area",
+		markerSize: 5,
+		xValueFormatString: "YYYY",
+		yValueFormatString: "$#,##0.##",
+		dataPoints: [
+			{ x: new Date(2000, 0), y: 2289000 },
+			{ x: new Date(2001, 0), y: 2830000 },
+			{ x: new Date(2002, 0), y: 1009000 },
+			{ x: new Date(2003, 0), y: 1840000 },
+			{ x: new Date(2004, 0), y: 1396000 },
+			{ x: new Date(2005, 0), y: 2613000 },
+			{ x: new Date(2006, 0), y: 1821000 },
+			{ x: new Date(2007, 0), y: 1000000 },
+			{ x: new Date(2008, 0), y: 1397000 },
+			{ x: new Date(2009, 0), y: 1506000 },
+			{ x: new Date(2010, 0), y: 1798000 },
+			{ x: new Date(2011, 0), y: 2386000 },
+			{ x: new Date(2012, 0), y: 4704000},
+			{ x: new Date(2013, 0), y: 4926000 },
+			{ x: new Date(2014, 0), y: 1394000 },
+			{ x: new Date(2015, 0), y: 972000 },
+			{ x: new Date(2016, 0), y: 1140000 }
+		]
+	}]
+});
+chart3.render();  }
         InsWeb3AppConfigs = {
             cdnPath: 'https://d3rqem538l0q4a.cloudfront.net'
         }
@@ -601,6 +681,7 @@ $.ajax({
 
 <body class="lang-en-US" style="font-family: sans-serif;">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  
     <noscript>
         <p class="noscript"><b>For the full functionality of it is necessary to enable JavaScript in your web
                 browser.</b><br /><a href="http://www.enable-javascript.com/" target="_blank">Click here for step by
@@ -1624,6 +1705,16 @@ $.ajax({
 
                         </header>
                         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+						   <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+                            </div>
+                      
+                        
+                    </div>
                     </div>
                 </div>
 
@@ -1642,6 +1733,10 @@ $.ajax({
         <footer id="footer">
 
         </footer>
+
+
+
+
 
 
         <div id="accountModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
