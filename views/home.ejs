@@ -90,6 +90,9 @@
             position: relative;
             left: 32px;
         }
+        select {
+  font-size: 13px !important;
+}
     </style>
 
     <script>
@@ -134,7 +137,7 @@
        // alert(data);
         
         $.ajax({
-            url: "https://10.20.20.12:9090/addOpportunity",
+            url: "https://localhost:9090/opportunity",
             type: "POST",
             async: false,
             data: data,
@@ -186,7 +189,7 @@
         //alert(data);
         
         $.ajax({
-            url: "https://10.20.20.12:9090/addLead",
+            url: "https://localhost:9090/leads",
             type: "POST",
             async: false,
             data: data,
@@ -237,7 +240,7 @@ data=JSON.stringify(data);
 //alert(data);
 
 $.ajax({
-    url: "https://10.20.20.12:9090/addAccount",
+    url: "https://localhost:9090/account",
     type: "POST",
     async: false,
     data: data,
@@ -289,22 +292,22 @@ data=JSON.stringify(data);
 //alert(data);
 
 $.ajax({
-    url: "https://10.20.20.12:9090/addContact",
+    url: "https://localhost:9090/contact",
     type: "POST",
     async: false,
     data: data,
     contentType: "application/json",
     dataType: "json",
     success: function (data) {
-        contactLoad();
-        document.getElementById("formContact").reset(); 
+      
+       
     },
 
     error: function () {
 
     }
 });
-
+contactLoad();
 }
         window.onload = function () {
 
@@ -417,7 +420,7 @@ chart3.render();  }
 
             var tableData = "";
 
-            var url = "https://10.20.20.12:9090/showEmployees";
+            var url = "https://localhost:9090/employees";
 
             $.ajax({
                 url: url,
@@ -445,7 +448,7 @@ chart3.render();  }
 
             var tableData = "";
 
-            var url = "https://10.20.20.12:9090/showAccount";
+            var url = "https://localhost:9090/account";
 
             $.ajax({
                 url: url,
@@ -476,9 +479,10 @@ chart3.render();  }
         }
         function contactLoad() {
 
-            var tableData = "";
+            var tableData ;
 
-            var url = "https://10.20.20.12:9090/showContact";
+            var url = "https://localhost:9090/contact";
+
 
             $.ajax({
                 url: url,
@@ -512,7 +516,7 @@ chart3.render();  }
 
             var tableData = "";
 
-            var url = "https://10.20.20.12:9090/showLeads";
+            var url = "https://localhost:9090/leads";
 
             $.ajax({
                 url: url,
@@ -546,7 +550,7 @@ chart3.render();  }
 
             var tableData = "";
 
-            var url = "https://10.20.20.12:9090/showOpportunity";
+            var url = "https://localhost:9090/opportunity";
 
             $.ajax({
                 url: url,
@@ -576,6 +580,7 @@ chart3.render();  }
                 }
             });
         }
+   
     </script>
     <link href="https://d3rqem538l0q4a.cloudfront.net/bundles/styles/kendo.min.css?v=dd26f0f1f8de38f41959d397aff1d9c4"
         rel="stylesheet" type="text/css" />
@@ -681,7 +686,59 @@ chart3.render();  }
 
 <body class="lang-en-US" style="font-family: sans-serif;">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  
+  <script>
+       function resetFormContact() {
+        $('#function1').prop('selectedIndex',0);
+        $('#department').prop('selectedIndex',0);
+        $('#first-name').val('');
+        $('#last-name').val('');
+        $('#account').val('');
+        $('#job-title').val('');
+        $('#phone').val('');
+        $('#city').val('');
+        $('#fax').val('');
+        $('#mobile').val('');
+        $('#email').val('');
+}
+function resetFormAccount() {
+        $('#accountCategory').prop('selectedIndex',0);
+        $('#accountVertical').prop('selectedIndex',0);
+        $('#accountCounty').prop('selectedIndex',0);
+        $('#accoutState').prop('selectedIndex',0);
+        $('#accountName').val('');
+        $('#parentAccount').val('');
+        $('#accountWebsite').val('');
+        $('#accountCity').val('');
+        $('#accountOwner').val('');
+}
+function resetFormOpp() {
+        $('#SalesCycle').prop('selectedIndex',0);
+        $('#Salesphase').prop('selectedIndex',0);
+        $('#convertcategory').prop('selectedIndex',0);
+        $('#Source').prop('selectedIndex',0);
+        $('#oppName').val('');
+        $('#Accountopp').val('');
+        $('#PrimaryContact').val('');
+        $('#Exceptedvalue').val('');
+        $('#Probability').val('');
+        $('#ForecastCategory').val('');
+        $('#Owneropp').val('');
+        $('#StartDate').val('');
+        $('#ClosingDate').val('');
+}
+function resetFormLead() {
+        $('#status').prop('selectedIndex',0);
+        $('#qul').prop('selectedIndex',0);
+        $('#source').prop('selectedIndex',0);
+        $('#category').prop('selectedIndex',0);
+        $('#priority').prop('selectedIndex',0);
+        $('#title').val('');
+        $('#company').val('');
+        $('#firstname').val('');
+        $('#lastname').val('');
+        $('#owner').val('');
+}
+</script>
     <noscript>
         <p class="noscript"><b>For the full functionality of it is necessary to enable JavaScript in your web
                 browser.</b><br /><a href="http://www.enable-javascript.com/" target="_blank">Click here for step by
@@ -776,35 +833,31 @@ chart3.render();  }
                     <ul class="dropdown-menu pull-right padding0" role="menu" id="AddNewItemMenu"
                         style="overflow-y:visible; max-height: none;">
                         <li>
-                            <ul class="dropdown-menu scrollable-new-item-menu">
+                            <ul class="dropdown-menu scrollable-new-item-menu" style="font-size:13px;">
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Task"
-                                        href="/Create/Task/"><i class="mdi mdi-clipboard-check mdi-18px"></i> Add New
-                                        Task</a>
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Task" data-toggle="modal"
+                                        href="#accountModal"  onclick="resetFormAccount()"><i class="mdi mdi-clipboard-check mdi-18px"></i> Add New
+                                        Account</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Contact"
-                                        href="/Create/Contact/"><i class="mdi mdi-account-card-details mdi-18px"></i>
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Contact" data-toggle="modal"
+                                        href="#contactModal"  onclick="resetFormContact();"><i class="mdi mdi-account-card-details mdi-18px"></i>
                                         Add New Contact</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Organisation"
-                                        href="/Create/Organisation/"><i class="mdi mdi-domain mdi-18px"></i> Add New
-                                        Organization</a>
-                                </li>
-                                <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Lead"
-                                        href="/Create/Lead/"><i class="mdi mdi-account-multiple mdi-18px"></i> Add New
-                                        Lead</a>
-                                </li>
-                                <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Opportunity"
-                                        href="/Create/Opportunity/"><i class="mdi mdi-bullseye mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Opportunity" data-toggle="modal"
+                                        href="#oppModal"  onclick="resetFormOpp();"><i class="mdi mdi-domain mdi-18px"></i> Add New
                                         Opportunity</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Project"
-                                        href="/Create/Project/"><i class="mdi mdi-hammer mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Lead" data-toggle="modal"
+                                        href="#leadModal"  onclick="resetFormLead();"><i class="mdi mdi-account-multiple mdi-18px"></i> Add New
+                                        Lead</a>
+                                </li>
+                               
+                                <li>
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Project" data-toggle="modal"
+                                        href=""><i class="mdi mdi-hammer mdi-18px"></i> Add New
                                         Project</a>
                                 </li>
                                 <li>
@@ -812,8 +865,8 @@ chart3.render();  }
                                         An Email</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Event"
-                                        href="/Create/Event/"><i class="mdi mdi-calendar mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Event" data-toggle="modal"
+                                        href=""><i class="mdi mdi-calendar mdi-18px"></i> Add New
                                         Event</a>
                                 </li>
                             </ul>
@@ -884,7 +937,7 @@ chart3.render();  }
                     <li class="divider"></li>
                                     <li><a href="/Account"><i class="mdi mdi-credit-card mdi-18px"></i>Billing &amp; Account</a></li>
                 <li class="divider"></li>-->
-                            <li><a href="/logout"><i class="mdi mdi-logout mdi-18px"></i>Log Out</a></li>
+                            <li><a href="/logout" style="font-size:13px;"><i class="mdi mdi-logout mdi-18px"></i>Log Out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -1064,7 +1117,39 @@ chart3.render();  }
                         </div>
                     </a>
                 </li>
-
+                <li title="Projects">
+                    <a id="navlink_project" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
+                        <div>
+                                <div class="navlink_img" id="navlink_project_img"></div>
+                            <span class="">Projects</span>
+                        </div>
+                    </a>
+                </li>
+                <li title="Emails">
+                    <a id="navlink_email" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
+                        <div>
+                                <div class="navlink_img" id="navlink_email_img"></div>
+                            <span class="">Emails</span>
+                        </div>
+                    </a>
+                </li>
+                <li title="Calendar">
+                    <a id="navlink_event" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
+                        <div>
+                                <div class="navlink_img" id="navlink_event_img"></div>
+                            <span class="">Calendar</span>
+                        </div>
+                    </a>
+                </li>
+               
+                <li title="Reports">
+                    <a id="navlink_report" class="sidebar_navlink " href="#homeTab" data-toggle="tab"> 
+                        <div>
+                                <div class="navlink_img" id="navlink_report_img"></div>
+                            <span class="">Reports</span>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -1079,7 +1164,7 @@ chart3.render();  }
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#contactModal"
-                                            data-entity-type="Contact" data-action="Create">
+                                            data-entity-type="Contact" data-action="Create" onclick="resetFormContact();">
                                             New Contact
                                         </a>
                                     </div>
@@ -1204,7 +1289,7 @@ chart3.render();  }
                             <header class="head-list">
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
-                                        <a class="btn in-entity-modal" data-toggle="modal" href="#leadModal"
+                                        <a class="btn in-entity-modal" data-toggle="modal" href="#leadModal" onclick="resetFormLead();"
                                             data-entity-type="Contact" data-action="Create">
                                             New Lead
                                         </a>
@@ -1317,7 +1402,7 @@ chart3.render();  }
 
             </div>
             <div id="accountTab" class="tab tab-pane ">
-                <div id="main" class=>
+                <div id="main" class="">
 
 
                     <div id="main-container" class="list-view contact">
@@ -1326,7 +1411,7 @@ chart3.render();  }
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#accountModal"
-                                            data-entity-type="Contact" data-action="Create">
+                                            data-entity-type="Contact" data-action="Create" onclick="resetFormAccount()">
                                             New Account
                                         </a>
                                     </div>
@@ -1447,7 +1532,7 @@ chart3.render();  }
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#oppModal"
-                                            data-entity-type="Contact" data-action="Create">
+                                            data-entity-type="Contact" data-action="Create" onclick="resetFormOpp();"> 
                                             New Opportunity
                                         </a>
                                     </div>
@@ -1740,7 +1825,7 @@ chart3.render();  }
 
 
         <div id="accountModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
-            style="height: auto;">
+            style="height: auto; padding-right: 0px  ! important;">
             <form method="post">
                     <div class="modal-content">
                         <div class="modal-header"
@@ -1919,7 +2004,7 @@ chart3.render();  }
     </div>-->
         </div>
         <div id="leadModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
-            style="height: auto;">
+            style="height: auto; padding-right: 0px  ! important;">
             <div class="modal-content">
                 <div class="modal-header"
                     style="padding-left:0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
@@ -1935,27 +2020,27 @@ chart3.render();  }
                                 <label class="control-label col-sm-12" for="name">Tittle:</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control form-group" id="title" name="title"></div>
+                                <input type="text" class="form-control form-group" id="title" name="title" style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
                                 <label class="control-label col-sm-12" for="name">Company:</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control form-group" id="company" name="company"></div>
+                                <input type="text" class="form-control form-group" id="company" name="company" style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
                                 <label class="control-label col-sm-12" for="name">Contact First Name:</label></div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="firstname" name="first_name"></div>
+                                <input type="text" class="form-control" id="firstname" name="first_name" style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
                                 <label class="control-label col-sm-12" for="name">Contact Last Name:</label></div>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control form-group" id="lastname" placeholder=""
-                                    name="last_name"></div>
+                                    name="last_name" style="height:71%;"></div>
                         </div>
 
                         <div class="row">
@@ -1966,7 +2051,7 @@ chart3.render();  }
                             <div class="col-sm-7">
                                 <select class="form-control" id="status" name="status">
                                     <option>Accepted</option>
-                                    <option>open</option>
+                                    <option>Open</option>
                                     <option>Declined</option>
                                     <option>Qualified</option>
                                 </select>
@@ -1979,7 +2064,7 @@ chart3.render();  }
                                     <label for="sel1">Qualification Level :</label></div>
                             </div>
                             <div class="col-sm-7">
-                                <select class="form-control" id="qul" name="qul" style="width:201px;">
+                                <select class="form-control" id="qul" name="qul" style="height:71%;">
                                     <option>Cold</option>
                                     <option>Hot</option>
                                     <option>Warm</option>
@@ -2042,7 +2127,7 @@ chart3.render();  }
                                     <label class="control-label col-sm-12" for="name">Owner:</label></div>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="owner" placeholder="" name="owner"></div>
+                                <input type="text" class="form-control" id="owner" placeholder="" name="owner" style="height:71%;"></div>
                         </div>
 
 
@@ -2060,7 +2145,7 @@ chart3.render();  }
             </div>
         </div>
         <div id="oppModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
-            style="height: auto;">
+            style="height: auto; padding-right: 0px  ! important;">
             <form method="post">
                 <div class="modal-content">
                     <div class="modal-header"
@@ -2076,12 +2161,12 @@ chart3.render();  }
 
                             <div class="col-sm-2"></div>
 
-                            <div class="col-sm-3">
-                                <label for="colFormLabelSm" class="col-sm-12 col-form-label col-form-label-sm" ;>Name
-                                    :</label></div>
+                    
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm" ;>Name
+                                    :</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-sm" id="oppName"
-                                    placeholder="" name="Name">
+                                    placeholder="" name="Name" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2091,7 +2176,7 @@ chart3.render();  }
                                 :</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-sm" id="Accountopp"
-                                    placeholder="" name="Account">
+                                    placeholder="" name="Account" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2101,7 +2186,7 @@ chart3.render();  }
                                 Contact :</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-sm" id="PrimaryContact"
-                                    placeholder="" name="PrimaryContact">
+                                    placeholder="" name="PrimaryContact" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2127,12 +2212,12 @@ chart3.render();  }
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-3">
-                                <label for="colFormLabelSm" class="col-sm-12 col-form-label col-form-label-sm"
-                                    ;>Excepted value :</label></div>
+                           
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"
+                                    ;>Excepted value :</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="Exceptedvalue"
-                                    placeholder="" style="width: 145px;" name="Exceptedvalue">
+                                    placeholder="" style="width: 145px; height:71%" name="Exceptedvalue">
                             </div>
                             <div class="col-sm-2">
                                 <select class="strike" id="sel1" style=" width: 55px;float: right;margin-right: 82%;">
@@ -2153,7 +2238,7 @@ chart3.render();  }
                                 :</label>
                             <div class="col-sm-6">
                                 <input type="date" id="StartDate" class="form-control"
-                                    style="width:79%; height:22px; padding:0px 0px;" name="StartDate">
+                                    style="width:79%; height:71%; padding:0px 0px;" name="StartDate">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2164,7 +2249,7 @@ chart3.render();  }
                                 :</label>
                             <div class="col-sm-6">
                                 <input type="date" id="ClosingDate" class="form-control"
-                                    style="width:79%; height:22px; padding:0px 0px;" name="ClosingDate">
+                                    style="width:79%; height:71%; padding:0px 0px;" name="ClosingDate">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2174,7 +2259,7 @@ chart3.render();  }
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Sales Cycle
                                 :</label>
                             <div class="col-sm-6">
-                                <select class="strike" id="SalesCycle" style="height:22px" name="SalesCycle">
+                                <select class="strike" id="SalesCycle" style="height:71%" name="SalesCycle">
                                     <option>New Business</option>
                                     <option>Repeat Business</option>
 
@@ -2188,7 +2273,7 @@ chart3.render();  }
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Sales phase
                                 :</label>
                             <div class="col-sm-6">
-                                <select class="strike" id="Salesphase" style="height:22px" name="Salesphase">
+                                <select class="strike" id="Salesphase" style="height:71%" name="Salesphase">
                                     <option>10% - Ideation</option>
                                     <option>25% - Qualified Opportunity </option>
                                     <option>50% - Proposal</option>
@@ -2205,7 +2290,7 @@ chart3.render();  }
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Probability
                                 :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="Probability" class="form-control" name="Probability">
+                                <input type="text" id="Probability" style="height: 71%;" class="form-control" name="Probability">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2226,7 +2311,7 @@ chart3.render();  }
                                 Category :</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" id="ForecastCategory" value="Pipeline"
-                                    name="ForecastCategory">
+                                    name="ForecastCategory" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2253,7 +2338,7 @@ chart3.render();  }
                                 <span style="color: red;">*</span>Owner :</div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-sm" id="Owneropp"
-                                    placeholder="" name="Owner">
+                                    placeholder="" name="Owner" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2262,7 +2347,7 @@ chart3.render();  }
                             <div class="col-sm-2"></div>
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Note :</label>
                             <div class="col-sm-6">
-                                <textarea rows="3" cols="22" id="convertnote" class="form-control" style="width:81%"
+                                <textarea rows="3" cols="22" id="convertnote" class="form-control" style="width:100%"
                                     name="Note"></textarea>
                             </div>
                             <div class="col-sm-1"></div>
@@ -2282,7 +2367,7 @@ chart3.render();  }
             </form>
         </div>
         <div id="contactModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
-            style="height: auto;">
+            style="height: auto; padding-right: 0px  ! important;">
             <form method="post" id="formContact">
                     <div class="modal-content">
                         <div class="modal-header"
