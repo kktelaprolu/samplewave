@@ -50,7 +50,51 @@
         }
       ]
     },
-   
+    {
+      "route": "/account/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "recorddisplay",
+
+
+      "description": "Routes to display record value in modal",
+      "examples": [
+        {
+          "param": "/account/:i"
+        }
+      ]
+    },
+    {
+      "route": "/account/:i",
+      "type": "put",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "updateaccount",
+
+
+      "description": "Routes to update record value in table",
+      "examples": [
+        {
+          "param": "/account/:i"
+        }
+      ]
+    },
+    {
+      "route": "/account/:i",
+      "type": "delete",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deleteaccount",
+
+
+      "description": "Routes to delete record value in table",
+      "examples": [
+        {
+          "param": "/account/:i"
+        }
+      ]
+    },
     {
       "route": "/logout",
       "type": "get",

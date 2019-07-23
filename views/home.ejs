@@ -25,13 +25,24 @@
 
 
     <style>
+        #size {
+            font-size: 12px;
+        }
+
+        input[type="text"] {
+            height: 45%;
+        }
+
+
         /* width */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        #main-container{
-         padding:10px !important;
+
+        #main-container {
+            padding: 10px !important;
         }
+
         /* Track */
         ::-webkit-scrollbar-track {
             box-shadow: inset 0 0 5px grey;
@@ -90,225 +101,253 @@
             position: relative;
             left: 32px;
         }
+
         select {
-  font-size: 13px !important;
-}
+            font-size: 13px !important;
+        }
     </style>
 
     <script>
-        function addOpportunity(){
-            var oppName=$("#oppName").val();
-        var Accountopp=$("#Accountopp").val();
-        var PrimaryContact=$("#PrimaryContact").val();
-        var Source=$("#Source").val();
-        var Exceptedvalue=$("#Exceptedvalue").val();
-        var StartDate=$("#StartDate").val();
-        var ClosingDate=$("#ClosingDate").val();
-        var SalesCycle=$("#SalesCycle").val();
-        var Salesphase=$("#Salesphase").val();
-       
-        var Probability=$("#Probability").val();
-        
-        var PublishtoForecast=$("#PublishtoForecast").val(); 
-        var ForecastCategory=$("#ForecastCategory").val();
-        var convertcategory=$("#convertcategory").val();
-        var Owneropp=$("#Owneropp").val();
-        
-        var data={
-                "oppName":oppName,
-                "Accountopp":Accountopp,
-                "PrimaryContact":PrimaryContact,
-                "Source":Source,
-                "Exceptedvalue":Exceptedvalue,
-                "StartDate":StartDate,
-                "ClosingDate":ClosingDate,
-                "SalesCycle":SalesCycle,
-                "Salesphase":Salesphase,
-                "Probability":Probability,
-                "PublishtoForecast":PublishtoForecast,
-                "ForecastCategory":ForecastCategory,
-                "convertcategory":convertcategory,
-                "Owneropp":Owneropp
-                }
-                
-        
-        
-        data=JSON.stringify(data); 
-       // alert(data);
-        
-        $.ajax({
-            url: "https://localhost:9090/opportunity",
-            type: "POST",
-            async: false,
-            data: data,
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-               
-            },
-        
-            error: function () {
-        
+        function editenable() {
+            $("#faname").prop("disabled", false);
+            $("#Prospect").prop("disabled", false);
+            $("#paacc").prop("disabled", false);
+            $("#website").prop("disabled", false);
+            $("#acccat").prop("disabled", false);
+            $("#vertical").prop("disabled", false);
+            $("#country").prop("disabled", false);
+            $("#city").prop("disabled", false);
+            $("#state").prop("disabled", false);
+            $("#owner").prop("disabled", false);
+            $("#edit").hide();
+            $("#save").prop("hidden", false);
+            $("#cancel").prop("hidden", false);
+
+        }
+
+        function addOpportunity() {
+            var oppName = $("#oppName").val();
+            var Accountopp = $("#Accountopp").val();
+            var PrimaryContact = $("#PrimaryContact").val();
+            var Source = $("#Source").val();
+            var Exceptedvalue = $("#Exceptedvalue").val();
+            var StartDate = $("#StartDate").val();
+            var ClosingDate = $("#ClosingDate").val();
+            var SalesCycle = $("#SalesCycle").val();
+            var Salesphase = $("#Salesphase").val();
+
+            var Probability = $("#Probability").val();
+
+            var PublishtoForecast = $("#PublishtoForecast").val();
+            var ForecastCategory = $("#ForecastCategory").val();
+            var convertcategory = $("#convertcategory").val();
+            var Owneropp = $("#Owneropp").val();
+
+            var data = {
+                "oppName": oppName,
+                "Accountopp": Accountopp,
+                "PrimaryContact": PrimaryContact,
+                "Source": Source,
+                "Exceptedvalue": Exceptedvalue,
+                "StartDate": StartDate,
+                "ClosingDate": ClosingDate,
+                "SalesCycle": SalesCycle,
+                "Salesphase": Salesphase,
+                "Probability": Probability,
+                "PublishtoForecast": PublishtoForecast,
+                "ForecastCategory": ForecastCategory,
+                "convertcategory": convertcategory,
+                "Owneropp": Owneropp
             }
-        });
-        opportunityLoad();
-        }
-    function addLead() {
 
-        var title=$("#title").val();
-        var company=$("#company").val();
-        var firstname=$("#firstname").val();
-        var lastname=$("#lastname").val();
-        var status=$("#status").val();
-        var qul=$("#qul").val();
-        var source=$("#source").val();
-        var category=$("#category").val();
-        var priority=$("#priority").val();
-       
-        var owner=$("#owner").val();
-        
-        
-        
-        
-        var data={
-                "title":title,
-                "company":company,
-                "firstname":firstname,
-                "lastname":lastname,
-                "status":status,
-                "qul":qul,
-                "source":source,
-                "category":category,
-                "priority":priority,
-                "owner":owner
+
+
+            data = JSON.stringify(data);
+            console.log(data);
+            // alert(data);
+
+            $.ajax({
+                url: "https://localhost:9090/opportunity",
+                type: "POST",
+                async: false,
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+                },
+
+                error: function () {
+
                 }
-                
-        
-        
-        data=JSON.stringify(data); 
-        //alert(data);
-        
-        $.ajax({
-            url: "https://localhost:9090/leads",
-            type: "POST",
-            async: false,
-            data: data,
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-                
-            },
-        
-            error: function () {
-        
+            });
+            opportunityLoad();
+        }
+        function addLead() {
+
+            var title = $("#title").val();
+            var company = $("#company").val();
+            var firstname = $("#firstname").val();
+            var lastname = $("#lastname").val();
+            var status = $("#status").val();
+            var qul = $("#qul").val();
+            var source = $("#source").val();
+            var category = $("#category").val();
+            var priority = $("#priority").val();
+
+            var owner = $("#owner").val();
+
+
+
+
+            var data = {
+                "title": title,
+                "company": company,
+                "firstname": firstname,
+                "lastname": lastname,
+                "status": status,
+                "qul": qul,
+                "source": source,
+                "category": category,
+                "priority": priority,
+                "owner": owner
             }
-        });
-        leadLoad();
+
+
+
+            data = JSON.stringify(data);
+            //alert(data);
+
+            $.ajax({
+                url: "https://localhost:9090/leads",
+                type: "POST",
+                async: false,
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+                },
+
+                error: function () {
+
+                }
+            });
+            leadLoad();
         }
-    function AddAccounts() {
 
-var name=$("#accountName").val();
-var status=$("#accountProspect").val();
-var parentaccount=$("#parentAccount").val();
-var website=$("#accountWebsite").val();
-var accountcategory=$("#accountCategory").val();
-var vertical=$("#accountVertical").val();
-var country=$("#accountCounty").val();
-var city=$("#accountCity").val();
-var state=$("#accoutState").val();
-var owner=$("#accountOwner").val();
+        function AddAccounts() {
+            console.log("function entered");
+
+            var name = $("#accountName").val();
+            var status = $("#accountProspect").val();
+            var parentaccount = $("#parentAccount").val();
+            var website = $("#accountWebsite").val();
+            var accountcategory = $("#accountCategory").val();
+            var vertical = $("#accountVertical").val();
+            var country = $("#accountCounty").val();
+            var city = $("#accountCity").val();
+            var state = $("#accoutState").val();
+            var owner = $("#accountOwner").val();
 
 
 
 
-var data={
-        "name":name,
-        "prospect":status,
-        "parentaccount":parentaccount,
-        "website":website,
-        "accountcategory":accountcategory,
-        "vertical":vertical,
-        "country":country,
-        "city":city,
-        "state":state,
-        "owner":owner
+            var data = {
+                "name": name,
+                "prospect": status,
+                "parentaccount": parentaccount,
+                "website": website,
+                "accountcategory": accountcategory,
+                "vertical": vertical,
+                "country": country,
+                "city": city,
+                "state": state,
+                "owner": owner
+            }
+
+
+
+            data = JSON.stringify(data);
+            console.log(data);
+            //alert(data);
+
+            $.ajax({
+                url: "https://localhost:9090/account",
+                type: "POST",
+                async: false,
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    /*var result = JSON.parse(data);
+                    console.log(result);
+                    var obj=json.parse(data)
+                    $("#faname").val(obj[0].name);
+                    */
+                },
+
+                error: function () {
+
+                }
+            });
+            AccountLoad();
         }
-        
+        function addContact() {
 
-
-data=JSON.stringify(data); 
-//alert(data);
-
-$.ajax({
-    url: "https://localhost:9090/account",
-    type: "POST",
-    async: false,
-    data: data,
-    contentType: "application/json",
-    dataType: "json",
-    success: function (data) {
-        
-    },
-
-    error: function () {
-
-    }
-});
-AccountLoad();
-}
-function addContact() {
-
-var fname=$("#first-name").val();
-var lname=$("#last-name").val();
-var account=$("#account").val();
-var title=$("#job-title").val();
-var function1=$("#function1").val();
-var department=$("#department").val();
-var phone=$("#phone").val();
-var city=$("#city").val();
-var fax=$("#fax").val();
-var mobile=$("#mobile").val();
-var email=$("#email").val();
+            var fname = $("#first-name").val();
+            var lname = $("#last-name").val();
+            var account = $("#account").val();
+            var title = $("#job-title").val();
+            var function1 = $("#function1").val();
+            var department = $("#department").val();
+            var phone = $("#phone").val();
+            var city = $("#city").val();
+            var fax = $("#fax").val();
+            var mobile = $("#mobile").val();
+            var email = $("#email").val();
 
 
 
-var data={
-        "firstname":fname,
-        "lastname":lname,
-        "accountname":account,
-        "jobtitle":title,
-        "functionname":function1,
-        "department":department,
-        "phone":phone,
-        "city":city,
-        "fax":fax,
-        "mobile":mobile,
-        "email":email,
+            var data = {
+                "firstname": fname,
+                "lastname": lname,
+                "accountname": account,
+                "jobtitle": title,
+                "functionname": function1,
+                "department": department,
+                "phone": phone,
+                "city": city,
+                "fax": fax,
+                "mobile": mobile,
+                "email": email,
+            }
+
+
+
+            data = JSON.stringify(data);
+            //alert(data);
+
+            $.ajax({
+                url: "https://localhost:9090/contact",
+                type: "POST",
+                async: false,
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+
+                },
+
+                error: function () {
+
+                }
+            });
+            contactLoad();
         }
-        
 
 
-data=JSON.stringify(data); 
-//alert(data);
-
-$.ajax({
-    url: "https://localhost:9090/contact",
-    type: "POST",
-    async: false,
-    data: data,
-    contentType: "application/json",
-    dataType: "json",
-    success: function (data) {
-      
-       
-    },
-
-    error: function () {
-
-    }
-});
-contactLoad();
-}
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("chartContainer2", {
@@ -331,88 +370,89 @@ contactLoad();
                 }]
             });
             chart.render();
-         
-            var charts = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title:{
-		text: "Estimation"   
-	},
-	axisY:{
-		title:""
-	},
-	toolTip: {
-		shared: true,
-		reversed: true
-	},
-	data: [{
-		type: "stackedColumn",
-		
-		showInLegend: "true",
-		yValueFormatString: "#,##0mn ",
-		dataPoints: [
-			{ y: 111338 , label: "Leads" },
-			{ y: 49088, label: "Contacts" },
-			{ y: 62200, label: "Accounts" },
-			{ y: 90085, label: "Employees" },
-			{ y: 38600, label: "Opportunities" }
-		
-		]
-	},
-	{
-		type: "stackedColumn",
-	
-		showInLegend: "true",
-		yValueFormatString: "#,##0mn ",
-		dataPoints: [
-			{ y: 135305 , label: "Leads" },
-			{ y: 107922, label: "Contacts" },
-			{ y: 52300, label: "Accounts" },
-			{ y: 3360, label: "Employees" },
-			{ y: 39900, label: "Opportunities" }
-		
-		]
-	}]
-});
-charts.render();
 
-var chart3 = new CanvasJS.Chart("chartContainer3", {
-	animationEnabled: true,  
-	title:{
-		text: "Revenue by Year"
-	},
-	axisY: {
-		title: "Revenue in USD",
-		valueFormatString: "#0,,.",
-		suffix: "mn",
-		prefix: "$"
-	},
-	data: [{
-		type: "area",
-		markerSize: 5,
-		xValueFormatString: "YYYY",
-		yValueFormatString: "$#,##0.##",
-		dataPoints: [
-			{ x: new Date(2000, 0), y: 2289000 },
-			{ x: new Date(2001, 0), y: 2830000 },
-			{ x: new Date(2002, 0), y: 1009000 },
-			{ x: new Date(2003, 0), y: 1840000 },
-			{ x: new Date(2004, 0), y: 1396000 },
-			{ x: new Date(2005, 0), y: 2613000 },
-			{ x: new Date(2006, 0), y: 1821000 },
-			{ x: new Date(2007, 0), y: 1000000 },
-			{ x: new Date(2008, 0), y: 1397000 },
-			{ x: new Date(2009, 0), y: 1506000 },
-			{ x: new Date(2010, 0), y: 1798000 },
-			{ x: new Date(2011, 0), y: 2386000 },
-			{ x: new Date(2012, 0), y: 4704000},
-			{ x: new Date(2013, 0), y: 4926000 },
-			{ x: new Date(2014, 0), y: 1394000 },
-			{ x: new Date(2015, 0), y: 972000 },
-			{ x: new Date(2016, 0), y: 1140000 }
-		]
-	}]
-});
-chart3.render();  }
+            var charts = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Estimation"
+                },
+                axisY: {
+                    title: ""
+                },
+                toolTip: {
+                    shared: true,
+                    reversed: true
+                },
+                data: [{
+                    type: "stackedColumn",
+
+                    showInLegend: "true",
+                    yValueFormatString: "#,##0mn ",
+                    dataPoints: [
+                        { y: 111338, label: "Leads" },
+                        { y: 49088, label: "Contacts" },
+                        { y: 62200, label: "Accounts" },
+                        { y: 90085, label: "Employees" },
+                        { y: 38600, label: "Opportunities" }
+
+                    ]
+                },
+                {
+                    type: "stackedColumn",
+
+                    showInLegend: "true",
+                    yValueFormatString: "#,##0mn ",
+                    dataPoints: [
+                        { y: 135305, label: "Leads" },
+                        { y: 107922, label: "Contacts" },
+                        { y: 52300, label: "Accounts" },
+                        { y: 3360, label: "Employees" },
+                        { y: 39900, label: "Opportunities" }
+
+                    ]
+                }]
+            });
+            charts.render();
+
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+                animationEnabled: true,
+                title: {
+                    text: "Revenue by Year"
+                },
+                axisY: {
+                    title: "Revenue in USD",
+                    valueFormatString: "#0,,.",
+                    suffix: "mn",
+                    prefix: "$"
+                },
+                data: [{
+                    type: "area",
+                    markerSize: 5,
+                    xValueFormatString: "YYYY",
+                    yValueFormatString: "$#,##0.##",
+                    dataPoints: [
+                        { x: new Date(2000, 0), y: 2289000 },
+                        { x: new Date(2001, 0), y: 2830000 },
+                        { x: new Date(2002, 0), y: 1009000 },
+                        { x: new Date(2003, 0), y: 1840000 },
+                        { x: new Date(2004, 0), y: 1396000 },
+                        { x: new Date(2005, 0), y: 2613000 },
+                        { x: new Date(2006, 0), y: 1821000 },
+                        { x: new Date(2007, 0), y: 1000000 },
+                        { x: new Date(2008, 0), y: 1397000 },
+                        { x: new Date(2009, 0), y: 1506000 },
+                        { x: new Date(2010, 0), y: 1798000 },
+                        { x: new Date(2011, 0), y: 2386000 },
+                        { x: new Date(2012, 0), y: 4704000 },
+                        { x: new Date(2013, 0), y: 4926000 },
+                        { x: new Date(2014, 0), y: 1394000 },
+                        { x: new Date(2015, 0), y: 972000 },
+                        { x: new Date(2016, 0), y: 1140000 }
+                    ]
+                }]
+            });
+            chart3.render();
+        }
         InsWeb3AppConfigs = {
             cdnPath: 'https://d3rqem538l0q4a.cloudfront.net'
         }
@@ -445,7 +485,7 @@ chart3.render();  }
             });
         }
         function AccountLoad() {
-
+            
             var tableData = "";
 
             var url = "https://localhost:9090/account";
@@ -454,11 +494,14 @@ chart3.render();  }
                 url: url,
                 type: "GET",
                 success: function (result) {
-
+                    // console.log(result);
+                    //var array=json.parse(result)
                     for (var i = 0; i < result.length; i++) {
-
+                        // $("#faname").val(result[i].name)
                         tableData = tableData + "  <tr> " +
-                            "<td >" + result[i].name + "</td>" +
+
+                            "<td hidden >" + result[i].id + "</td>" +
+                            "<td onclick='accountdisplay(" + result[i].id + ")'>" + "<a href='#editModal' data-toggle='modal' data-backdrop='static'  data-keyboard='false' >" + result[i].name + "</a>" + "</td>" +
                             "<td >" + result[i].prospect + "</td>" +
                             "<td >" + result[i].parentaccount + "</td>" +
                             "<td >" + result[i].website + "</td>" +
@@ -468,8 +511,9 @@ chart3.render();  }
                             "<td >" + result[i].city + "</td>" +
                             "<td >" + result[i].state + "</td>" +
                             "<td >" + result[i].owner + "</td>" +
-                            "</tr>";
-
+                            //"<td onclick='accountdelete(" + result[i].id + ")'>" + '<button class="btn btn-sm btn-danger" >Delete</button>' + "</td>"
+                            "<td >" + '<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal" data-backdrop="static"  data-keyboard="false">Delete</button>' + "</td>"
+                        "</tr>";
                     }
                     // alert(tableData);
 
@@ -477,9 +521,126 @@ chart3.render();  }
                 }
             });
         }
+        function accountdisplay(i) {
+            console.log("working");
+            var url = "https://localhost:9090/account/" + i;
+            console.log(url);
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    console.log(result);
+                    $("#Aid").text(result[0].id);
+                    $("#faname").val(result[0].name);
+                    $("#Prospect").val(result[0].prospect);
+                    $("#paacc").val(result[0].parentaccount);
+                    $("#website").val(result[0].website);
+                    $("#acccat").val(result[0].accountcategory);
+                    $("#vertical").val(result[0].vertical);
+                    $("#country").val(result[0].country);
+
+                    $("#city").val(result[0].city);
+                    $("#state").val(result[0].state);
+                    $("#owner").val(result[0].owner);
+                    // $("#editmodal").text(namedata)
+
+                    //var array=json.parse(result)
+                }
+            });
+
+        }
+        function updateaccount() {
+            console.log("function entered");
+            var id = $("#Aid").text();
+            var name = $("#faname").val();
+            //console.log(id);
+            var status = $("#Prospect").val();
+            var parentaccount = $("#paacc").val();
+            var website = $("#website").val();
+            var accountcategory = $("#acccat").val();
+            if (accountcategory == null || accountcategory == 0) {
+                accountcategory = "savings";
+            } else {
+                accountcategory = $("#acccat").val();
+            }
+
+            var vertical = $("#vertical").val();
+            if (vertical == null || vertical == 0) {
+                vertical = "";
+            } else {
+                vertical = $("#vertical").val();
+            }
+            var country = $("#country").val();
+            if (country == null || country == 0) {
+                country = "india";
+            } else {
+                country = $("#country").val();
+            }
+            var city = $("#city").val();
+            var state = $("#state").val();
+            if (state == null || state == 0) {
+                state = "hyderabad ";
+            } else {
+                state = $("#state").val();
+            }
+            var owner = $("#owner").val();
+            var data = {
+                "id": id,
+                "name": name,
+                "prospect": status,
+                "parentaccount": parentaccount,
+                "website": website,
+                "accountcategory": accountcategory,
+                "vertical": vertical,
+                "country": country,
+                "city": city,
+                "state": state,
+                "owner": owner
+            }
+            data = JSON.stringify(data);
+            console.log(data);
+            //alert(data);
+            var url = "https://localhost:9090/account/" + id;
+            console.log(url);
+            $.ajax({
+                url: url,
+                type: "put",
+                async: true,
+                data: data,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    
+                },
+              
+
+            });
+           
+            AccountLoad();
+           // window. alert("record updated successfully");
+            
+        }
+        function accountdelete(i) {
+            console.log("working");
+            var url = "https://localhost:9090/account/" + i;
+            console.log(url);
+            $.ajax({
+                url: url,
+                type: "delete",
+                async: true,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (result) {
+
+
+                }
+            });
+            AccountLoad();
+        }
         function contactLoad() {
 
-            var tableData ;
+            var tableData;
 
             var url = "https://localhost:9090/contact";
 
@@ -526,7 +687,7 @@ chart3.render();  }
                     for (var i = 0; i < result.length; i++) {
 
                         tableData = tableData + "  <tr> " +
-                            "<td >" + result[i].id + "</td>" +
+                            "<td >" + "<a href=''>" + result[i].id + "</a>" + "</td>" +
                             "<td >" + result[i].title + "</td>" +
                             "<td >" + result[i].company + "</td>" +
                             "<td >" + result[i].firstname + "</td>" +
@@ -560,7 +721,7 @@ chart3.render();  }
                     for (var i = 0; i < result.length; i++) {
 
                         tableData = tableData + "  <tr> " +
-                            "<td >" + result[i].name + "</td>" +
+                            "<td >" + "<a href='#'>" + result[i].name + "</a>" + "</td>" +
                             "<td >" + result[i].account + "</td>" +
                             "<td >" + result[i].primarycontact + "</td>" +
                             "<td >" + result[i].source + "</td>" +
@@ -580,7 +741,7 @@ chart3.render();  }
                 }
             });
         }
-   
+
     </script>
     <link href="https://d3rqem538l0q4a.cloudfront.net/bundles/styles/kendo.min.css?v=dd26f0f1f8de38f41959d397aff1d9c4"
         rel="stylesheet" type="text/css" />
@@ -647,14 +808,14 @@ chart3.render();  }
     <!-- Required For 'Tipped' Popup Tooltips in IE -->
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TN8P4X');</script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-TN8P4X');</script>
     <!-- End Google Tag Manager -->
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -672,73 +833,86 @@ chart3.render();  }
     <!-- raygun js -->
     <script type="text/javascript">
         !function (a, b, c, d, e, f, g, h) {
-        a.RaygunObject = e, a[e] = a[e] || function () {
-            (a[e].o = a[e].o || []).push(arguments)
-        }, f = b.createElement(c), g = b.getElementsByTagName(c)[0],
-            f.async = 1, f.src = d, g.parentNode.insertBefore(f, g), h = a.onerror, a.onerror = function (b, c, d, f, g) {
-                h && h(b, c, d, f, g), g || (g = new Error(b)), a[e].q = a[e].q || [], a[e].q.push({
-                    e: g
-                })
-            }
+            a.RaygunObject = e, a[e] = a[e] || function () {
+                (a[e].o = a[e].o || []).push(arguments)
+            }, f = b.createElement(c), g = b.getElementsByTagName(c)[0],
+                f.async = 1, f.src = d, g.parentNode.insertBefore(f, g), h = a.onerror, a.onerror = function (b, c, d, f, g) {
+                    h && h(b, c, d, f, g), g || (g = new Error(b)), a[e].q = a[e].q || [], a[e].q.push({
+                        e: g
+                    })
+                }
         }(window, document, "script", "//cdn.raygun.io/raygun4js/raygun.min.js", "rg4js");
     </script>
 </head>
 
 <body class="lang-en-US" style="font-family: sans-serif;">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script>
-       function resetFormContact() {
-        $('#function1').prop('selectedIndex',0);
-        $('#department').prop('selectedIndex',0);
-        $('#first-name').val('');
-        $('#last-name').val('');
-        $('#account').val('');
-        $('#job-title').val('');
-        $('#phone').val('');
-        $('#city').val('');
-        $('#fax').val('');
-        $('#mobile').val('');
-        $('#email').val('');
-}
-function resetFormAccount() {
-        $('#accountCategory').prop('selectedIndex',0);
-        $('#accountVertical').prop('selectedIndex',0);
-        $('#accountCounty').prop('selectedIndex',0);
-        $('#accoutState').prop('selectedIndex',0);
-        $('#accountName').val('');
-        $('#parentAccount').val('');
-        $('#accountWebsite').val('');
-        $('#accountCity').val('');
-        $('#accountOwner').val('');
-}
-function resetFormOpp() {
-        $('#SalesCycle').prop('selectedIndex',0);
-        $('#Salesphase').prop('selectedIndex',0);
-        $('#convertcategory').prop('selectedIndex',0);
-        $('#Source').prop('selectedIndex',0);
-        $('#oppName').val('');
-        $('#Accountopp').val('');
-        $('#PrimaryContact').val('');
-        $('#Exceptedvalue').val('');
-        $('#Probability').val('');
-        $('#ForecastCategory').val('');
-        $('#Owneropp').val('');
-        $('#StartDate').val('');
-        $('#ClosingDate').val('');
-}
-function resetFormLead() {
-        $('#status').prop('selectedIndex',0);
-        $('#qul').prop('selectedIndex',0);
-        $('#source').prop('selectedIndex',0);
-        $('#category').prop('selectedIndex',0);
-        $('#priority').prop('selectedIndex',0);
-        $('#title').val('');
-        $('#company').val('');
-        $('#firstname').val('');
-        $('#lastname').val('');
-        $('#owner').val('');
-}
-</script>
+    <script>
+        function resetFormContact() {
+            $('#function1').prop('selectedIndex', 0);
+            $('#department').prop('selectedIndex', 0);
+            $('#first-name').val('');
+            $('#last-name').val('');
+            $('#account').val('');
+            $('#job-title').val('');
+            $('#phone').val('');
+            $('#city').val('');
+            $('#fax').val('');
+            $('#mobile').val('');
+            $('#email').val('');
+        }
+        function resetFormAccount() {
+            $('#accountCategory').prop('selectedIndex', 0);
+            $('#accountVertical').prop('selectedIndex', 0);
+            $('#accountCounty').prop('selectedIndex', 0);
+            $('#accoutState').prop('selectedIndex', 0);
+            $('#accountName').val('');
+            $('#parentAccount').val('');
+            $('#accountWebsite').val('');
+            $('#accountCity').val('');
+            $('#accountOwner').val('');
+        }
+        function clearFormAccount() {
+            $("#faname").prop("disabled", true);
+            $("#Prospect").prop("disabled", true);
+            $("#paacc").prop("disabled", true);
+            $("#website").prop("disabled", true);
+            $("#acccat").prop("disabled", true);
+            $("#vertical").prop("disabled", true);
+            $("#country").prop("disabled", true);
+            $("#city").prop("disabled", true);
+            $("#state").prop("disabled", true);
+            $("#owner").prop("disabled", true);
+
+        }
+        function resetFormOpp() {
+            $('#SalesCycle').prop('selectedIndex', 0);
+            $('#Salesphase').prop('selectedIndex', 0);
+            $('#convertcategory').prop('selectedIndex', 0);
+            $('#Source').prop('selectedIndex', 0);
+            $('#oppName').val('');
+            $('#Accountopp').val('');
+            $('#PrimaryContact').val('');
+            $('#Exceptedvalue').val('');
+            $('#Probability').val('');
+            $('#ForecastCategory').val('');
+            $('#Owneropp').val('');
+            $('#StartDate').val('');
+            $('#ClosingDate').val('');
+        }
+        function resetFormLead() {
+            $('#status').prop('selectedIndex', 0);
+            $('#qul').prop('selectedIndex', 0);
+            $('#source').prop('selectedIndex', 0);
+            $('#category').prop('selectedIndex', 0);
+            $('#priority').prop('selectedIndex', 0);
+            $('#title').val('');
+            $('#company').val('');
+            $('#firstname').val('');
+            $('#lastname').val('');
+            $('#owner').val('');
+        }
+    </script>
     <noscript>
         <p class="noscript"><b>For the full functionality of it is necessary to enable JavaScript in your web
                 browser.</b><br /><a href="http://www.enable-javascript.com/" target="_blank">Click here for step by
@@ -835,29 +1009,33 @@ function resetFormLead() {
                         <li>
                             <ul class="dropdown-menu scrollable-new-item-menu" style="font-size:13px;">
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Task" data-toggle="modal"
-                                        href="#accountModal"  onclick="resetFormAccount()"><i class="mdi mdi-clipboard-check mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Task"
+                                        data-toggle="modal" href="#accountModal" onclick="resetFormAccount()"><i
+                                            class="mdi mdi-clipboard-check mdi-18px"></i> Add New
                                         Account</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Contact" data-toggle="modal"
-                                        href="#contactModal"  onclick="resetFormContact();"><i class="mdi mdi-account-card-details mdi-18px"></i>
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Contact"
+                                        data-toggle="modal" href="#contactModal" onclick="resetFormContact();"><i
+                                            class="mdi mdi-account-card-details mdi-18px"></i>
                                         Add New Contact</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Opportunity" data-toggle="modal"
-                                        href="#oppModal"  onclick="resetFormOpp();"><i class="mdi mdi-domain mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Opportunity"
+                                        data-toggle="modal" href="#oppModal" onclick="resetFormOpp();"><i
+                                            class="mdi mdi-domain mdi-18px"></i> Add New
                                         Opportunity</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Lead" data-toggle="modal"
-                                        href="#leadModal"  onclick="resetFormLead();"><i class="mdi mdi-account-multiple mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Lead"
+                                        data-toggle="modal" href="#leadModal" onclick="resetFormLead();"><i
+                                            class="mdi mdi-account-multiple mdi-18px"></i> Add New
                                         Lead</a>
                                 </li>
-                               
+
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Project" data-toggle="modal"
-                                        href=""><i class="mdi mdi-hammer mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Project"
+                                        data-toggle="modal" href=""><i class="mdi mdi-hammer mdi-18px"></i> Add New
                                         Project</a>
                                 </li>
                                 <li>
@@ -865,8 +1043,8 @@ function resetFormLead() {
                                         An Email</a>
                                 </li>
                                 <li>
-                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Event" data-toggle="modal"
-                                        href=""><i class="mdi mdi-calendar mdi-18px"></i> Add New
+                                    <a class="in-entity-modal" data-action="Create" data-entity-type="Event"
+                                        data-toggle="modal" href=""><i class="mdi mdi-calendar mdi-18px"></i> Add New
                                         Event</a>
                                 </li>
                             </ul>
@@ -937,7 +1115,8 @@ function resetFormLead() {
                     <li class="divider"></li>
                                     <li><a href="/Account"><i class="mdi mdi-credit-card mdi-18px"></i>Billing &amp; Account</a></li>
                 <li class="divider"></li>-->
-                            <li><a href="/logout" style="font-size:13px;"><i class="mdi mdi-logout mdi-18px"></i>Log Out</a></li>
+                            <li><a href="/logout" style="font-size:13px;"><i class="mdi mdi-logout mdi-18px"></i>Log
+                                    Out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -1067,7 +1246,7 @@ function resetFormLead() {
 
                 <li title="Tasks">
                 <li title="Accounts">
-                    <a id="navlink_report" class="sidebar_navlink " href="#accountTab" onClick="AccountLoad();"
+                    <a id="navlink_report" class="sidebar_navlink " href="#accountTab" onclick="AccountLoad();"
                         data-toggle="tab">
                         <div>
                             <div class="navlink_img" id="navlink_organisation_img"></div>
@@ -1120,7 +1299,7 @@ function resetFormLead() {
                 <li title="Projects">
                     <a id="navlink_project" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
                         <div>
-                                <div class="navlink_img" id="navlink_project_img"></div>
+                            <div class="navlink_img" id="navlink_project_img"></div>
                             <span class="">Projects</span>
                         </div>
                     </a>
@@ -1128,7 +1307,7 @@ function resetFormLead() {
                 <li title="Emails">
                     <a id="navlink_email" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
                         <div>
-                                <div class="navlink_img" id="navlink_email_img"></div>
+                            <div class="navlink_img" id="navlink_email_img"></div>
                             <span class="">Emails</span>
                         </div>
                     </a>
@@ -1136,16 +1315,16 @@ function resetFormLead() {
                 <li title="Calendar">
                     <a id="navlink_event" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
                         <div>
-                                <div class="navlink_img" id="navlink_event_img"></div>
+                            <div class="navlink_img" id="navlink_event_img"></div>
                             <span class="">Calendar</span>
                         </div>
                     </a>
                 </li>
-               
+
                 <li title="Reports">
-                    <a id="navlink_report" class="sidebar_navlink " href="#homeTab" data-toggle="tab"> 
+                    <a id="navlink_report" class="sidebar_navlink " href="#homeTab" data-toggle="tab">
                         <div>
-                                <div class="navlink_img" id="navlink_report_img"></div>
+                            <div class="navlink_img" id="navlink_report_img"></div>
                             <span class="">Reports</span>
                         </div>
                     </a>
@@ -1164,7 +1343,8 @@ function resetFormLead() {
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#contactModal"
-                                            data-entity-type="Contact" data-action="Create" onclick="resetFormContact();">
+                                            data-entity-type="Contact" data-action="Create"
+                                            onclick="resetFormContact();">
                                             New Contact
                                         </a>
                                     </div>
@@ -1289,8 +1469,8 @@ function resetFormLead() {
                             <header class="head-list">
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
-                                        <a class="btn in-entity-modal" data-toggle="modal" href="#leadModal" onclick="resetFormLead();"
-                                            data-entity-type="Contact" data-action="Create">
+                                        <a class="btn in-entity-modal" data-toggle="modal" href="#leadModal"
+                                            onclick="resetFormLead();" data-entity-type="Contact" data-action="Create">
                                             New Lead
                                         </a>
                                     </div>
@@ -1411,7 +1591,8 @@ function resetFormLead() {
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#accountModal"
-                                            data-entity-type="Contact" data-action="Create" onclick="resetFormAccount()">
+                                            data-entity-type="Contact" data-action="Create"
+                                            onclick="resetFormAccount()">
                                             New Account
                                         </a>
                                     </div>
@@ -1486,13 +1667,14 @@ function resetFormLead() {
                             </header>
                         </div>
                         <div id="main-content" class="contact">
-
+                             
                             <div class="entity-list" id="entity-list">
 
                                 <table class="table table-respnosive">
 
                                     <thead class="table" style="background-color: 1b213b ">
                                         <tr style="font-weight:bold ; ">
+                                            <th hidden>Id</th>
                                             <th>Name</th>
                                             <th>Prospect</th>
                                             <th>ParentAccount</th>
@@ -1503,18 +1685,266 @@ function resetFormLead() {
                                             <th>City</th>
                                             <th>State</th>
                                             <th>Owner</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
+                                    
+                                          
                                     <tbody id="accountTable">
+                                            
+                                        <div class="container">
 
+                                            <!-- Button to Open the Modal -->
+
+
+                                            <!-- The Modal -->
+                                            <div class="modal" id="editModal" style="height: 385px;width: 804px">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header"
+                                                            style="padding-left: 0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
+
+                                                            <b class="modal-title"
+                                                                style="font-size:15px;margin-left:9px;">New Account:</b>
+
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                        </div>
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body" id="size">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-1"> </div>
+                                                                <div class="col-sm-2">
+                                                                    <label>Name:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <p id="Aid" style="display:none;"></p>
+                                                                    <input type="text" id="faname" disabled value=""
+                                                                        class="form-control form-group">
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label id="size">Prospect:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="checkbox" id="Prospect" disabled
+                                                                        name="check" checked="">
+                                                                </div>
+                                                                <div class="col-sm-1"> </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-1"> </div>
+                                                                <div class="col-sm-2">
+                                                                    <label>Parent Account:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" disabled id="paacc" value=""
+                                                                        class="form-control form-group">
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label>Website:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" disabled id="website"
+                                                                        class="form-control form-group">
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <label style="width: 113px;">Account
+                                                                        Category:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select class="strike" disabled
+                                                                        style="height:22px;font-size: 12px;width:100%;border-radius: 3px;"
+                                                                        name="acccat" id="acccat">
+                                                                        <option value="" style="display:none;"></option>
+                                                                        <option>Global</option>
+                                                                        <option>N-20</option>
+                                                                        <option>others</option>
+                                                                        <option>platinum</option>
+                                                                        <option>T-30</option>
+                                                                        <option>X-30</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label>Vertical:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select class="strike" id="vertical" disabled
+                                                                        name="vertex"
+                                                                        style="height:22px;font-size: 12px;width:100%;border-radius: 3px;">
+                                                                        <option value="" style="display:none;"></option>
+                                                                        <option>L&amp;T Thales</option>
+                                                                        <option>L&amp;T Thales common</option>
+                                                                        <option>GDA IP</option>
+                                                                        <option>VLSI</option>
+                                                                        <option>Admin Own</option>
+                                                                        <option>CE's Office</option>
+                                                                        <option>Capability Enhancement Group</option>
+                                                                        <option>Corporate Centre</option>
+                                                                        <option>Corporate Strategy</option>
+                                                                        <option>Thales</option>
+                                                                        <option>CSR</option>
+                                                                        <option>Analytics &amp; Electric Vehicle
+                                                                        </option>
+                                                                        <option>CTO COMMON</option>
+                                                                        <option>Global Alliances &amp; Consulting
+                                                                        </option>
+                                                                        <option>M2M &amp; IOT Solutions</option>
+                                                                        <option>TSIC + EPF</option>
+                                                                        <option>F&amp;A &amp; legal</option>
+                                                                        <option>Human Resources System</option>
+                                                                        <option>Central PMO</option>
+                                                                        <option>IT Own</option>
+                                                                        <option>LSM - UK - LLC</option>
+                                                                        <option>Marketing &amp; Corporate communications
+                                                                        </option>
+                                                                        <option>Corporate Resource Pool</option>
+                                                                        <option>Operations</option>
+                                                                        <option>RMG</option>
+                                                                        <option>Org Investment Initiatives</option>
+                                                                        <option>Pre- Sales Europe</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <label style="width: 113px;">Country:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select class="strike" id="country" disabled
+                                                                        name="country"
+                                                                        style="height:22px;font-size: 12px;width:100%;border-radius: 3px;">
+                                                                        <option style="display:none;"></option>
+                                                                        <option>Arab Emirates</option>
+                                                                        <option>Afghanisthan</option>
+                                                                        <option>Albania</option>
+                                                                        <option>Armenia</option>
+                                                                        <option>Angola</option>
+                                                                        <option>Argentina</option>
+                                                                        <option>Austria</option>
+                                                                        <option>Australia</option>
+                                                                        <option>Azerbaijan</option>
+                                                                        <option>Bosnia</option>
+                                                                        <option>Bangladesh</option>
+                                                                        <option>Belgium</option>
+                                                                        <option>Burkina Faso</option>
+                                                                        <option>Bulgaria</option>
+                                                                        <option>Bahrain</option>
+                                                                        <option>Burundi</option>
+                                                                        <option>Benin</option>
+
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label>City:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" disabled id="city"
+                                                                        class="form-control form-group">
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+
+
+
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <label>State:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select class="strike" id="state" disabled
+                                                                        name="stat"
+                                                                        style="height: 22px;font-size: 12px;width:100%;border-radius: 3px;">
+                                                                        <option style="display:none;"></option>
+                                                                        <option>Ajman</option>
+                                                                        <option>Abu Zaby [Abu Dhabi]</option>
+                                                                        <option>Dubayy [Dubai]</option>
+                                                                        <option>Al Fujayrah</option>
+                                                                        <option>Ra's al Khaymah</option>
+                                                                        <option>Ash Shariqah [Sharjah]</option>
+                                                                        <option>Umm al Qaywayn</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label>Owner:</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" disabled id="owner"
+                                                                        class="form-control form-group">
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="submit" id="save" class="btn btn-primary"
+                                                                data-dismiss="modal" hidden
+                                                                onclick="updateaccount()">save</button>
+                                                            <button type="button" id="cancel" class="btn"
+                                                                data-dismiss="modal" onclick="clearFormAccount()"
+                                                                hidden>cancel</button>
+                                                            <button type="submit" id="edit" class="btn btn-primary"
+                                                                onclick="editenable()">Edit</button>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </tbody>
 
 
                                 </table>
-
+                                <p id="Aid" style="display:none;"></p>
                             </div>
-
+                            <div class="modal" id="myModal" style="height: auto;">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                      
+                                        <!-- Modal Header -->
+                                        <div class="modal-header" style="background-color: rgb(51, 122, 183);">
+                                          <h4 class="modal-title"></h4>
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        
+                                        <!-- Modal body -->
+                                        <div class="modal-body" style="padding: 12px;text-align: center;">
+                                          <b>Do you want to delete this record permanently?</b>
+                                        </div>
+                                        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer" style="border-top: none;padding: 0px 15px 15px">
+                                          <button type="submit" onclick='accountdelete("+ result[i].id +");' class="btn btn-primary btn-sm" data-dismiss="modal">Delete</button>
+                                         <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
 
                         </div>
                     </div>
@@ -1532,7 +1962,7 @@ function resetFormLead() {
                                 <div id="default_controls">
                                     <div class="pull-right" id="AddNewButton">
                                         <a class="btn in-entity-modal" data-toggle="modal" href="#oppModal"
-                                            data-entity-type="Contact" data-action="Create" onclick="resetFormOpp();"> 
+                                            data-entity-type="Contact" data-action="Create" onclick="resetFormOpp();">
                                             New Opportunity
                                         </a>
                                     </div>
@@ -1647,6 +2077,7 @@ function resetFormLead() {
 
 
             </div>
+
             <div id="employeeTab" class="tab tab-pane ">
 
                 <div id="main" class=>
@@ -1770,11 +2201,11 @@ function resetFormLead() {
                     <div id="main-container" class="list-view contact">
                         <header class="head-list">
                             <div id="default_controls">
-                            
+
                                 <div class="title">
                                     <div class="btn-group">
                                         <button id="btn-list-title" class="btn" title="">
-                                          Dashboard
+                                            Dashboard
                                         </button>
 
                                     </div>
@@ -1790,16 +2221,16 @@ function resetFormLead() {
 
                         </header>
                         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-						   <div class="row">
+                        <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+                                <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+                                <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
                             </div>
-                      
-                        
-                    </div>
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -1827,173 +2258,174 @@ function resetFormLead() {
         <div id="accountModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
             style="height: auto; padding-right: 0px  ! important;">
             <form method="post">
-                    <div class="modal-content">
-                        <div class="modal-header"
-                            style="padding-left:0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
-                            <b class="modal-title" style="font-size:15px;margin-left:9px;">New Account :</b>
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                        </div>
-    
-                        <div class="modal-body">
-    
-                            <div class="row">
-    
-                                <div class="col-lg-5">
-    
-                                    <span style="color:red">*</span> Name:
-                                </div>
-    
-                                <div class="col-lg-7">
-                                    <input type="text" class="form-control" name="nam" id="accountName"
-                                        style="height:25px;width: 80%;">
-                                </div>
-    
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group">Prospect:</div>
-                                </div>
-                                <div class="col-lg-7"><input type="checkbox" id="accountProspect" name="check" checked>
-    
-                                </div>
-                            </div>
-                            <div class="row">
-    
-                                <div class="col-lg-5">Parent Account:</div>
-    
-                                <div class="col-lg-6"><input type="text" class="form-control" name="paacc"
-                                        id="parentAccount" style="height:25px;width:95%;"></div>
-                                <div class="col-lg-1" style="margin-left: -31px;"><span class="fa fa-share"></span></div>
-    
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group">Website:</div>
-                                </div>
-                                <div class="col-lg-7"><input type="text" class="form-control" name="web" id="accountWebsite"
-                                        style="height:25px;width: 80%;"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group"><span style="color:red">*</span>Account Category:</div>
-                                </div>
-                                <div class="col-lg-7"><select
-                                        style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;"
-                                        name="acccat" id="accountCategory">
-                                        <option>Global</option>
-                                        <option>N-20</option>
-                                        <option>others</option>
-                                        <option>platinum</option>
-                                        <option>T-30</option>
-                                       <option>X-30</option>
-                                    </select></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group"><span style="color:red">*</span>Vertical:</div>
-                                </div>
-                                <div class="col-lg-7"><select
-                                        style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;" name="vert"
-                                        id="accountVertical">
-                                        <option value="" style="display:none;"></option>
-                                        <option>L&amp;T Thales</option>
-                                        <option>L&amp;T Thales common</option>
-                                        <option>GDA IP</option>
-                                        <option>VLSI</option>
-                                        <option>Admin Own</option>
-                                        <option>CE's Office</option>
-                                        <option>Capability Enhancement Group</option>
-                                        <option>Corporate Centre</option>
-                                        <option>Corporate Strategy</option>
-                                        <option>Thales</option>
-                                        <option>CSR</option>
-                                        <option>Analytics &amp; Electric Vehicle</option>
-                                        <option>CTO COMMON</option>
-                                        <option>Global Alliances &amp; Consulting</option>
-                                        <option>M2M &amp; IOT Solutions</option>
-                                        <option>TSIC + EPF</option>
-                                        <option>F&amp;A &amp; legal</option>
-                                        <option>Human Resources System</option>
-                                        <option>Central PMO</option>
-                                        <option>IT Own</option>
-                                        <option>LSM - UK - LLC</option>
-                                        <option>Marketing &amp; Corporate communications</option>
-                                        <option>Corporate Resource Pool</option>
-                                        <option>Operations</option>
-                                        <option>RMG</option>
-                                        <option>Org Investment Initiatives</option>
-                                        <option>Pre- Sales Europe</option>
-                                    </select></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group"><span style="color:red">*</span>Country:</div>
-                                </div>
-                                <div class="col-lg-7"><select
-                                        style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc; height: auto;"
-                                        name="country" id="accountCounty">
-                                        <option style="display:none;"></option>
-                                        <option>Arab Emirates</option>
-                                        <option>Afghanisthan</option>
-                                        <option>Albania</option>
-                                        <option>Armenia</option>
-                                        <option>Angola</option>
-                                        <option>Argentina</option>
-                                        <option>Austria</option>
-                                        <option>Australia</option>
-                                        <option>Azerbaijan</option>
-                                        <option>Bosnia</option>
-                                        <option>Bangladesh</option>
-                                        <option>Belgium</option>
-                                        <option>Burkina Faso</option>
-                                        <option>Bulgaria</option>
-                                        <option>Bahrain</option>
-                                        <option>Burundi</option>
-                                        <option>Benin</option>
-                                    </select></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group"><span style="color:red">*</span>City:</div>
-                                </div>
-                                <div class="col-lg-7"><input type="text" class="form-control"
-                                        style="height:25px;width: 80%;" name="city" id="accountCity"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group">State:</div>
-                                </div>
-                                <div class="col-lg-7"><select
-                                        style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;"
-                                        name="state" id="accoutState">
-                                        <option>Ajman</option>
-                                        <option>Abu Zaby [Abu Dhabi]</option>
-                                        <option>Dubayy [Dubai]</option>
-                                        <option>Al Fujayrah</option>
-                                        <option>Ra's al Khaymah</option>
-                                        <option>Ash Shariqah [Sharjah]</option>
-                                        <option>Umm al Qaywayn</option>
-                                    </select></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="form-group">Owner:</div>
-                                </div>
-                                <div class="col-lg-6"><input type="text" class="form-control "
-                                        style="height:25px;width:95%;" name="owner" id="accountOwner"></div>
-                                <div class="col-lg-1" style="margin-left: -31px;"><span class="fa fa-share"></span></div>
-                            </div>
-    
-    
-                        </div>
-    
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="AddAccounts();">Save</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header"
+                        style="padding-left:0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
+                        <b class="modal-title" style="font-size:15px;margin-left:9px;">New Account :</b>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
                     </div>
-                </form>
-    
+
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-lg-5">
+
+                                <span style="color:red">*</span> Name:
+                            </div>
+
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" name="nam" id="accountName"
+                                    style="height:25px;width: 80%;">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">Prospect:</div>
+                            </div>
+                            <div class="col-lg-7"><input type="checkbox" id="accountProspect" name="check" checked>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-5">Parent Account:</div>
+
+                            <div class="col-lg-6"><input type="text" class="form-control" name="paacc"
+                                    id="parentAccount" style="height:25px;width:95%;"></div>
+                            <div class="col-lg-1" style="margin-left: -31px;"><span class="fa fa-share"></span></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">Website:</div>
+                            </div>
+                            <div class="col-lg-7"><input type="text" class="form-control" name="web" id="accountWebsite"
+                                    style="height:25px;width: 80%;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group"><span style="color:red">*</span>Account Category:</div>
+                            </div>
+                            <div class="col-lg-7"><select
+                                    style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;"
+                                    name="acccat" id="accountCategory">
+                                    <option>Global</option>
+                                    <option>N-20</option>
+                                    <option>others</option>
+                                    <option>platinum</option>
+                                    <option>T-30</option>
+                                    <option>X-30</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group"><span style="color:red">*</span>Vertical:</div>
+                            </div>
+                            <div class="col-lg-7"><select
+                                    style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;" name="vert"
+                                    id="accountVertical">
+                                    <option value="" style="display:none;"></option>
+                                    <option>L&amp;T Thales</option>
+                                    <option>L&amp;T Thales common</option>
+                                    <option>GDA IP</option>
+                                    <option>VLSI</option>
+                                    <option>Admin Own</option>
+                                    <option>CE's Office</option>
+                                    <option>Capability Enhancement Group</option>
+                                    <option>Corporate Centre</option>
+                                    <option>Corporate Strategy</option>
+                                    <option>Thales</option>
+                                    <option>CSR</option>
+                                    <option>Analytics &amp; Electric Vehicle</option>
+                                    <option>CTO COMMON</option>
+                                    <option>Global Alliances &amp; Consulting</option>
+                                    <option>M2M &amp; IOT Solutions</option>
+                                    <option>TSIC + EPF</option>
+                                    <option>F&amp;A &amp; legal</option>
+                                    <option>Human Resources System</option>
+                                    <option>Central PMO</option>
+                                    <option>IT Own</option>
+                                    <option>LSM - UK - LLC</option>
+                                    <option>Marketing &amp; Corporate communications</option>
+                                    <option>Corporate Resource Pool</option>
+                                    <option>Operations</option>
+                                    <option>RMG</option>
+                                    <option>Org Investment Initiatives</option>
+                                    <option>Pre- Sales Europe</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group"><span style="color:red">*</span>Country:</div>
+                            </div>
+                            <div class="col-lg-7"><select
+                                    style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc; height: auto;"
+                                    name="country" id="accountCounty">
+                                    <option style="display:none;"></option>
+                                    <option>Arab Emirates</option>
+                                    <option>Afghanisthan</option>
+                                    <option>Albania</option>
+                                    <option>Armenia</option>
+                                    <option>Angola</option>
+                                    <option>Argentina</option>
+                                    <option>Austria</option>
+                                    <option>Australia</option>
+                                    <option>Azerbaijan</option>
+                                    <option>Bosnia</option>
+                                    <option>Bangladesh</option>
+                                    <option>Belgium</option>
+                                    <option>Burkina Faso</option>
+                                    <option>Bulgaria</option>
+                                    <option>Bahrain</option>
+                                    <option>Burundi</option>
+                                    <option>Benin</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group"><span style="color:red">*</span>City:</div>
+                            </div>
+                            <div class="col-lg-7"><input type="text" class="form-control"
+                                    style="height:25px;width: 80%;" name="city" id="accountCity"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">State:</div>
+                            </div>
+                            <div class="col-lg-7"><select
+                                    style="height:25px;width: 80%;border-radius:4px;border: 1px solid #ccc;"
+                                    name="state" id="accoutState">
+                                    <option>Ajman</option>
+                                    <option>Abu Zaby [Abu Dhabi]</option>
+                                    <option>Dubayy [Dubai]</option>
+                                    <option>Al Fujayrah</option>
+                                    <option>Ra's al Khaymah</option>
+                                    <option>Ash Shariqah [Sharjah]</option>
+                                    <option>Umm al Qaywayn</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">Owner:</div>
+                            </div>
+                            <div class="col-lg-6"><input type="text" class="form-control "
+                                    style="height:25px;width:95%;" name="owner" id="accountOwner"></div>
+                            <div class="col-lg-1" style="margin-left: -31px;"><span class="fa fa-share"></span></div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                            onclick="AddAccounts();">Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </form>
+
             <!--<div class="modal-footer">
         <img class="spinnerholder" style="display: none; margin-right: 20px;" src="/img/spinner.gif">
         <button class="btn" data-dismiss="modal" aria-hidden="true" id="btnCancel">Cancel</button>
@@ -2020,20 +2452,23 @@ function resetFormLead() {
                                 <label class="control-label col-sm-12" for="name">Tittle:</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control form-group" id="title" name="title" style="height:71%;"></div>
+                                <input type="text" class="form-control form-group" id="title" name="title"
+                                    style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
                                 <label class="control-label col-sm-12" for="name">Company:</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control form-group" id="company" name="company" style="height:71%;"></div>
+                                <input type="text" class="form-control form-group" id="company" name="company"
+                                    style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
                                 <label class="control-label col-sm-12" for="name">Contact First Name:</label></div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="firstname" name="first_name" style="height:71%;"></div>
+                                <input type="text" class="form-control" id="firstname" name="first_name"
+                                    style="height:71%;"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
@@ -2127,7 +2562,8 @@ function resetFormLead() {
                                     <label class="control-label col-sm-12" for="name">Owner:</label></div>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="owner" placeholder="" name="owner" style="height:71%;"></div>
+                                <input type="text" class="form-control" id="owner" placeholder="" name="owner"
+                                    style="height:71%;"></div>
                         </div>
 
 
@@ -2161,12 +2597,12 @@ function resetFormLead() {
 
                             <div class="col-sm-2"></div>
 
-                    
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm" ;>Name
-                                    :</label>
+
+                            <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm" ;>Name
+                                :</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-sm" id="oppName"
-                                    placeholder="" name="Name" style="height: 71%;">
+                                <input type="text" class="form-control form-control-sm" id="oppName" placeholder=""
+                                    name="Name" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2175,8 +2611,8 @@ function resetFormLead() {
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm ">Account
                                 :</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-sm" id="Accountopp"
-                                    placeholder="" name="Account" style="height: 71%;">
+                                <input type="text" class="form-control form-control-sm" id="Accountopp" placeholder=""
+                                    name="Account" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2212,9 +2648,9 @@ function resetFormLead() {
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2"></div>
-                           
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"
-                                    ;>Excepted value :</label>
+
+                            <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm" ;>Excepted
+                                value :</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="Exceptedvalue"
                                     placeholder="" style="width: 145px; height:71%" name="Exceptedvalue">
@@ -2290,7 +2726,8 @@ function resetFormLead() {
                             <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Probability
                                 :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="Probability" style="height: 71%;" class="form-control" name="Probability">
+                                <input type="text" id="Probability" style="height: 71%;" class="form-control"
+                                    name="Probability">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2337,8 +2774,8 @@ function resetFormLead() {
                             <div class="col-sm-3" style="font-size: 13px">
                                 <span style="color: red;">*</span>Owner :</div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-sm" id="Owneropp"
-                                    placeholder="" name="Owner" style="height: 71%;">
+                                <input type="text" class="form-control form-control-sm" id="Owneropp" placeholder=""
+                                    name="Owner" style="height: 71%;">
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -2361,7 +2798,8 @@ function resetFormLead() {
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addOpportunity();">Save</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                        onclick="addOpportunity();">Save</button>
                     <button type="reset" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
@@ -2369,179 +2807,192 @@ function resetFormLead() {
         <div id="contactModal" class="modal hide no-reset" role="dialog" aria-labelledby="modal-form" aria-hidden="true"
             style="height: auto; padding-right: 0px  ! important;">
             <form method="post" id="formContact">
-                    <div class="modal-content">
-                        <div class="modal-header"
-                            style="padding-left:0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
-                            <b class="modal-title" style="font-size:15px;margin-left:9px;">New Contact :</b>
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                        </div>
-    
-                        <div class="modal-body">
-    
-                            <div class="row">
-
-                                <div class="col-sm-1"></div>
-                                   <div class="col-sm-3">First Name:
-                                       </div>
-                                <div class="col-sm-5">
-                                <input type="text" required class="form-control" name="first_name" id="first-name" style="height: 71%;">
-                                </div>
-                                 <div class="col-sm-1"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-1"></div>
-                                        <div class="col-sm-3">
-                                        <p><span style="color:red;">*</span>Last Name:</div>
-                                        <div class="col-sm-5">
-                                     <input type="text" required class="form-control" name="last_name" id="last-name" style="height: 71%;">
-                                     </div>
-                                       <div class="col-sm-2"></div>
-                                     </div>
-                                     <div class="row">
-                                        <div class="col-sm-1"></div>
-                                           <div class="col-sm-3">
-                                            <p><span style="color:red;">*</span> Account:</div>
-                                        <div class="col-sm-5">
-                                        <input type="text" required class="form-control" name="account" id="account" style="height: 71%;">
-                                        </div>
-                                       
-                                         <div class="col-sm-2"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-1"></div>
-                                               <div class="col-sm-3">Job Title:</div>
-                                            <div class="col-sm-5">
-                                            <input type="text" required class="form-control" name="job_title" id="job-title" style="height: 71%;">
-                                            </div>
-                                             <div class="col-sm-2"></div>
-                                           </div>
-                                           <div class="row">
-                                            <div class="col-sm-1"></div>
-                                               <div class="col-sm-3"> Function:</p>
-                                                                                    </div>
-                                            <div class="col-sm-5">
-                                            <select class="form-control" name="function1" id="function1" style="height: 71%;">
-                                              <option selected></option>
-                                            <option>Executive Board</option>
-                                                
-                                                  <option>Marketing Manager</option>
-                                                
-                                                  <option>Purchasing Officer</option>
-                                                  
-                                                  <option>Sales Manager</option>
-                                                  
-                                                  <option>Service Support Manager</option>
-                                                  
-                                                  <option>Sales Representative</option>
-                                                  
-                                                  <option>Head of Personnel</option>
-                                                  
-                                                  <option>Purchasing Manager</option>
-                                                  
-                                                  <option>Quality Officer</option>
-                                                  
-                                                  <option>Territory Sales Manager</option>
-                                                  
-                                                  <option>Regional Sales Manager</option>
-                                                  
-                                                  <option>Traveler</option>
-                                                  
-                                              </select>	
-                                            </div>
-                                            
-                                             <div class="col-sm-2"></div>
-                                            </div>
-                                            <div class="row">
-                                            <div class="col-sm-1"></div>
-                                               <div class="col-sm-3">Department:</p>
-                                                                                    </div>
-                                            
-                                            <div class="col-sm-5">
-                                            <select class="form-control" name="department" id="department" style="height: 71%;">
-                                              <option selected></option>
-                                            <option>Administration Dept</option>
-                                                
-                                                  <option>Financial Dept</option>
-                                                
-                                                  <option>Purchasing Dept</option>
-                                                  
-                                                  <option> QA Dept</option>
-                                                  
-                                                  <option>R&D Dept</option>
-                                                  
-                                                  <option>Sales Dept</option>
-                                                  </select>
-                                                  
-                                            </div>
-                                           
-                                             <div class="col-sm-2"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-1"></div>
-                                                    <div class="col-sm-3">Phone:</div>
-                                                 
-                                                 <div class="col-sm-5">
-                                                 <input type="text" required class="form-control" name="phone" id="phone" style="height: 71%;">
-                                                 </div>
-                                                 
-                                                  <div class="col-sm-2"></div>
-                                                 </div>
-                                                 <div class="row">
-                                                    <div class="col-sm-1"></div>
-                                                        <div class="col-sm-3">City:</div>
-                                                     
-                                                     <div class="col-sm-5">
-                                                     <input type="text" required class="form-control" name="city" id="city" style="height: 71%;">
-                                                     </div>
-                                                      <div class="col-sm-2"></div>
-                                                     </div>
-                                                     
-                                                     
-                                                     
-                                                      <div class="row">
-                                                    <div class="col-sm-1"></div>
-                                                        <div class="col-sm-3">Fax:</div>
-                                                     
-                                                     <div class="col-sm-5">
-                                                     <input type="text" required class="form-control" name="fax" id="fax" style="height: 71%;">
-                                                     </div>
-                                                     <div class="col-sm-2"></div>
-                                                     </div>
-                                                                     
-                                                     
-                                                     <div class="row">
-                                                    <div class="col-sm-1"></div>
-                                                        <div class="col-sm-3">
-                                                        <p><span style="color:red;">*</span>Mobile:</div>
-                                                     
-                                                     <div class="col-sm-5">
-                                                     <input type="text" required class="form-control" name="mobile" id="mobile" style="height: 71%;">
-                                                     </div>
-                                                      <div class="col-sm-2"></div>
-                                                     </div>
-                                                     
-                                                     <div class="row">
-                                                    <div class="col-sm-1"></div>
-                                                        <div class="col-sm-3">Email:</div>
-                                                     
-                                                     <div class="col-sm-5">
-                                                     <input type="text" required class="form-control" name="email" id="email" style="height: 71%;">
-                                                     </div>
-                                                     <div class="col-sm-2"></div>
-                                                     </div>
-                                                     
-                                                     
-    
-    
-                        </div>
-    
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addContact();">Save</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header"
+                        style="padding-left:0;border-bottom: 1px solid #d2c7c7;margin-bottom: 20px;background-color: #e6e0e094;">
+                        <b class="modal-title" style="font-size:15px;margin-left:9px;">New Contact :</b>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
                     </div>
-                </form>
-    
+
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">First Name:
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="first_name" id="first-name"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <p><span style="color:red;">*</span>Last Name:
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="last_name" id="last-name"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <p><span style="color:red;">*</span> Account:
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="account" id="account"
+                                    style="height: 71%;">
+                            </div>
+
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">Job Title:</div>
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="job_title" id="job-title"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3"> Function:</p>
+                            </div>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="function1" id="function1" style="height: 71%;">
+                                    <option selected></option>
+                                    <option>Executive Board</option>
+
+                                    <option>Marketing Manager</option>
+
+                                    <option>Purchasing Officer</option>
+
+                                    <option>Sales Manager</option>
+
+                                    <option>Service Support Manager</option>
+
+                                    <option>Sales Representative</option>
+
+                                    <option>Head of Personnel</option>
+
+                                    <option>Purchasing Manager</option>
+
+                                    <option>Quality Officer</option>
+
+                                    <option>Territory Sales Manager</option>
+
+                                    <option>Regional Sales Manager</option>
+
+                                    <option>Traveler</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">Department:</p>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <select class="form-control" name="department" id="department" style="height: 71%;">
+                                    <option selected></option>
+                                    <option>Administration Dept</option>
+
+                                    <option>Financial Dept</option>
+
+                                    <option>Purchasing Dept</option>
+
+                                    <option> QA Dept</option>
+
+                                    <option>R&D Dept</option>
+
+                                    <option>Sales Dept</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">Phone:</div>
+
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="phone" id="phone"
+                                    style="height: 71%;">
+                            </div>
+
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">City:</div>
+
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="city" id="city"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">Fax:</div>
+
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="fax" id="fax"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <p><span style="color:red;">*</span>Mobile:
+                            </div>
+
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="mobile" id="mobile"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">Email:</div>
+
+                            <div class="col-sm-5">
+                                <input type="text" required class="form-control" name="email" id="email"
+                                    style="height: 71%;">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                            onclick="addContact();">Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </form>
+
             <!--<div class="modal-footer">
         <img class="spinnerholder" style="display: none; margin-right: 20px;" src="/img/spinner.gif">
         <button class="btn" data-dismiss="modal" aria-hidden="true" id="btnCancel">Cancel</button>

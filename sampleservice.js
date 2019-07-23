@@ -243,17 +243,43 @@ exports.getAccountPage = function (req, res) {
 
     let query = "SELECT * FROM `account`";
 
-
+//console.log(query);
 
     db.query(query, (err, result) => {
 
         if (err) {
             res.redirect('/');
-            console.log("errorrr");
+            //console.log("errorrr");
         }
         res.json(result);
+      //  console.log(result);
 
 
+    });
+};
+exports.updateaccount = function (req, res) {
+    //console.log("updaterecord");
+    //let playerId = req.params.name;
+    var Sid= req.body.id;
+    let nam = req.body.name;
+    let prosp = req.body.prospect;
+    let parentacc = req.body.parentaccount;
+    let webs = req.body.website;
+    let accountcat = req.body.accountcategory;
+    let vert = req.body.vertical;
+    let count = req.body.country;
+    let cit = req.body.city;
+    let stat = req.body.state;
+    let own = req.body.owner;
+
+    let query = "UPDATE `account` SET `name` = '" + nam + "', `prospect` = '" + prosp + "', `parentaccount` = '" + parentacc + "', `website` = '" + webs + "',`accountcategory` = '" + accountcat +"', `vertical` = '" + vert +"',`country` = '" + count +"',`city` = '" + cit +"',`state` = '" + stat+"',`owner` = '"+ own +"' WHERE `id` = '" + Sid + "'";
+//console.log(query);
+    db.query(query, (err, result) => {
+        //console.log(err);
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('/home');
     });
 };
 exports.getOpportunityPage = function (req, res) {
@@ -268,6 +294,39 @@ exports.getOpportunityPage = function (req, res) {
         res.status(200).json(result2);
     });
 },
+exports.recorddisplay = function (req, res) {
+
+      // console.log("hello");
+   
+    
+    var Sid= req.params.i;
+    //console.log(Sid);
+    let query='select * from account where id="'+Sid+'" '; 
+   // console.log(query);
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+               // console.log(result);
+    });
+
+};
+exports.deleteaccount = function (req, res) {
+
+    let Sid = req.params.i;
+    let deleteUserQuery = 'DELETE FROM account WHERE id = "' + Sid + '"';
+//console.log(deleteUserQuery);
+    db.query(deleteUserQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+    });
+
+
+}
+
     exports.addOpportunity = function (req, res) {
 
        
