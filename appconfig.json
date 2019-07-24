@@ -96,6 +96,21 @@
       ]
     },
     {
+      "route": "/delete/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deletedisplay",
+
+
+      "description": "Routes to display id of an record in hidden",
+      "examples": [
+        {
+          "param": "/delete/:i"
+        }
+      ]
+    },
+    {
       "route": "/logout",
       "type": "get",
       "configured": true,

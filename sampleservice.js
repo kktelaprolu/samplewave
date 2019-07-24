@@ -312,6 +312,24 @@ exports.recorddisplay = function (req, res) {
     });
 
 };
+exports.deletedisplay = function (req, res) {
+
+    // console.log("hello");
+ 
+  
+  var Sid= req.params.i;
+  //console.log(Sid);
+  let query='select * from account where id="'+Sid+'" '; 
+ // console.log(query);
+  db.query(query, (err, result) => {
+      if (err) {
+          return res.status(500).send(err);
+      }
+      res.status(200).json(result);
+             // console.log(result);
+  });
+
+};
 exports.deleteaccount = function (req, res) {
 
     let Sid = req.params.i;
