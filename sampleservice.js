@@ -154,7 +154,7 @@ exports.getEmpPage = function (req, res) {
 };
 exports.addLead = function (req, res) {
 
-     let message = '';
+    let message = '';
     let title = req.body.title;
     let company = req.body.company;
     let firstname = req.body.firstname;
@@ -166,10 +166,16 @@ exports.addLead = function (req, res) {
     let priority = req.body.priority;
     let owner = req.body.owner;
 
+<<<<<<< HEAD
 let query = "INSERT INTO `socka`.`lead` (title,company,firstname,lastname,status,qualificationlevel,source,category,priority,owner) VALUES ('" +
     title + "', '" + company + "', '" + firstname + "', '" + lastname + "','" + status + "','" + qul + "',  '" + source + "',  '" + category + "',  '" + priority + "',  '" + owner + "')";
+=======
+    let query = "INSERT INTO `lead` (title,company,firstname,lastname,status,qualificationlevel,source,category,priority,owner) VALUES ('" +
+        title + "', '" + company + "', '" + firstname + "', '" + lastname + "','" + status + "','" + qul +
+        "',  '" + source + "',  '" + category + "',  '" + priority + "',  '" + owner + "')";
 
-       
+>>>>>>> fd2c07d4d69fd83c01b966b42e6827f51e55b8eb
+
     db.query(query, (err, result) => {
         if (err) {
             console.log("error contact");
@@ -233,7 +239,7 @@ exports.getBackPage = function (req, res) {
 };
 exports.addContactPage = function (req, res) {
 
-let fname = req.body.firstname;
+    let fname = req.body.firstname;
     let lname = req.body.lastname;
     let account = req.body.accountname;
     let title = req.body.jobtitle;
@@ -245,14 +251,14 @@ let fname = req.body.firstname;
     let mobile = req.body.mobile;
     let email = req.body.email;
     let query = "INSERT INTO `contact` (firstname,lastname,accountname,jobtitle,functionname,department,phone,city,fax,mobile,email) VALUES ('" +
-    fname + "', '" + lname + "', '" + account + "', '" + title + "','" + function1 + "','" +
+        fname + "', '" + lname + "', '" + account + "', '" + title + "','" + function1 + "','" +
         department + "','" + phone + "','" + city + "','" + fax + "','" + mobile + "','" +
         email + "')";
 
 
     db.query(query, (err, result) => {
+
         if (err) {
-            console.log("error contact");
             return res.status(500).send(err);
         }
 
@@ -268,13 +274,80 @@ exports.ContactPage = function (req, res) {
 
         if (err) {
             res.redirect('/');
-            console.log("errorrr");
         }
         res.status(200).json(result);
 
 
     });
 };
+
+exports.recorddisplay = function (req, res) {
+
+    var Sid = req.params.i;
+    let query = 'select * from contact where contactid="' + Sid + '" ';
+    db.query(query, (err, result) => {
+
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+
+    });
+
+};
+
+exports.updatecontact = function (req, res) {
+
+    var Sid = req.body.id;
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let acc = req.body.accountname;
+    let jobtitle = req.body.jobtitle;
+    let funct = req.body.functionname;
+    let depart = req.body.department;
+    let phn = req.body.phone;
+    let cit = req.body.city;
+    let fa = req.body.fax;
+    let mob = req.body.mobile;
+    let eml = req.body.email;
+
+    let query = "UPDATE `contact` SET `firstname` = '" + firstname + "', `lastname` = '" + lastname + "',`accountname` = '" + acc + "', `jobtitle` = '" + jobtitle + "',`functionname` = '" + funct + "', `department` = '" + depart + "',`phone` = '" + phn + "',`city` = '" + cit + "',`fax` = '" + fa + "',`mobile` = '" + mob + "',`email` = '" + eml + "' WHERE `contactid` = '" + Sid + "'";
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('/home');
+    });
+};
+
+exports.deletecont = function (req, res) {
+
+    let Sid = req.params.i;
+    let deleteUserQuery = 'DELETE FROM contact WHERE contactid = "' + Sid + '"';
+    db.query(deleteUserQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+    });
+
+}
+
+exports.deletedisplay = function (req, res) {
+
+    var Sid = req.params.i;
+    let query = 'select * from contact where contactid="' + Sid + '" ';
+    db.query(query, (err, result) => {
+
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+
+    });
+
+};
+
 exports.addAccountPage = function (req, res) {
     let message = '';
     let name = req.body.name;
@@ -300,8 +373,6 @@ exports.addAccountPage = function (req, res) {
     let query = "INSERT INTO `account` (name,prospect, parentaccount,website,accountcategory,vertical,country,city,state,owner) VALUES ('" +
         name + "', '" + status + "','" + parentaccount + "', '" + website + "','" + accountcategory + "','" + vertical + "','" + cont + "','" + cit + "','" + stat + "','" + own + "')";
 
-
-
     db.query(query, (err, result2) => {
         if (err) {
             return res.status(500).send(err);
@@ -315,17 +386,43 @@ exports.getAccountPage = function (req, res) {
 
     let query = "SELECT * FROM `account`";
 
-
+//console.log(query);
 
     db.query(query, (err, result) => {
 
         if (err) {
             res.redirect('/');
-            console.log("errorrr");
+            //console.log("errorrr");
         }
         res.json(result);
+      //  console.log(result);
 
 
+    });
+};
+exports.updateaccount = function (req, res) {
+    //console.log("updaterecord");
+    //let playerId = req.params.name;
+    var Sid= req.body.id;
+    let nam = req.body.name;
+    let prosp = req.body.prospect;
+    let parentacc = req.body.parentaccount;
+    let webs = req.body.website;
+    let accountcat = req.body.accountcategory;
+    let vert = req.body.vertical;
+    let count = req.body.country;
+    let cit = req.body.city;
+    let stat = req.body.state;
+    let own = req.body.owner;
+
+    let query = "UPDATE `account` SET `name` = '" + nam + "', `prospect` = '" + prosp + "', `parentaccount` = '" + parentacc + "', `website` = '" + webs + "',`accountcategory` = '" + accountcat +"', `vertical` = '" + vert +"',`country` = '" + count +"',`city` = '" + cit +"',`state` = '" + stat+"',`owner` = '"+ own +"' WHERE `id` = '" + Sid + "'";
+//console.log(query);
+    db.query(query, (err, result) => {
+        //console.log(err);
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('/home');
     });
 };
 exports.getOpportunityPage = function (req, res) {
@@ -340,9 +437,60 @@ exports.getOpportunityPage = function (req, res) {
         res.status(200).json(result2);
     });
 },
+exports.recorddisplay = function (req, res) {
+
+      // console.log("hello");
+   
+    
+    var Sid= req.params.i;
+    //console.log(Sid);
+    let query='select * from account where id="'+Sid+'" '; 
+   // console.log(query);
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+               // console.log(result);
+    });
+
+};
+exports.deletedisplay = function (req, res) {
+
+    // console.log("hello");
+ 
+  
+  var Sid= req.params.i;
+  //console.log(Sid);
+  let query='select * from account where id="'+Sid+'" '; 
+ // console.log(query);
+  db.query(query, (err, result) => {
+      if (err) {
+          return res.status(500).send(err);
+      }
+      res.status(200).json(result);
+             // console.log(result);
+  });
+
+};
+exports.deleteaccount = function (req, res) {
+
+    let Sid = req.params.i;
+    let deleteUserQuery = 'DELETE FROM account WHERE id = "' + Sid + '"';
+//console.log(deleteUserQuery);
+    db.query(deleteUserQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+    });
+
+
+}
+
     exports.addOpportunity = function (req, res) {
 
-       
+
         let message = '';
         let Name = req.body.oppName;
         let Account = req.body.Accountopp;
@@ -366,7 +514,7 @@ exports.getOpportunityPage = function (req, res) {
             Name + "', '" + Account + "','" + PrimaryContact + "', '" + Source + "','" + Exceptedvalue +
             "','" + StartDate + "','" + ClosingDate + "','" + SalesCycle + "','" + Salesphase + "','" +
             Probability + "','" + ForecastCategory + "','" + Category + "','" + Owner + "')";
-			
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
