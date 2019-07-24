@@ -79,6 +79,63 @@
       ]
     },
     {
+      "route": "/leads/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "recorddisplay",
+
+
+      "description": "Routes to display record value in leadmodal",
+      "examples": [
+        {
+          "param": "/leads/:i"
+        }
+      ]
+    },
+    {
+      "route": "/leads/:i",
+      "type": "put",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "updateleadrecord",
+
+
+      "description": "Routes to update record value in table",
+      "examples": [
+        {
+          "param": "/leads/:i"
+        }
+      ]
+    },
+    {
+      "route": "/leads/:i",
+      "type": "delete",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deleteleadrecord",
+      "description": "Delete leadrecord details choosen",
+      "examples": [
+        {
+          "param": "/leads/:i"
+        }
+      ]
+    },
+    {
+      "route": "/delete/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deleteleaddisplay",
+
+      "description": "Routes to delete recordin leadmodal",
+      "examples": [
+        {
+          "param": "/delete/:i"
+        }
+      ]
+    },
+    {
       "route": "/employees",
       "type": "get",
       "configured": true,

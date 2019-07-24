@@ -53,6 +53,7 @@ exports.getLeadPage = function (req, res) {
 
     let query = "SELECT * FROM `lead` ORDER BY id ASC";
 
+
     db.query(query, (err, result) => {
 
         if (err) {
@@ -63,6 +64,78 @@ exports.getLeadPage = function (req, res) {
 
     });
 };
+exports.recorddisplay = function (req, res) {
+
+    
+  var Sid= req.params.i;
+ 
+ let query='select * from lead where id="'+Sid+'" '; 
+ 
+ db.query(query, (err, result) => {
+     if (err) {
+         return res.status(500).send(err);
+     }
+     res.status(200).json(result);
+             
+ });
+
+};
+exports.updateleadrecord = function (req, res) {
+    //console.log("updaterecord");
+    //let playerId = req.params.name;
+    var Sid= req.body.id;
+    //console.log(id);
+    var titl= req.body.title;
+    let compan = req.body.company;
+    let qualle = req.body.qualificationlevel;
+    let sourc = req.body.source;
+    let categor = req.body.category;
+    let firstnam = req.body.firstname;
+    let lastnam = req.body.lastname;
+    let priorit = req.body.priority;
+    let owne = req.body.owner;
+    let statu = req.body.status;
+  
+
+    let query = "UPDATE `lead` SET  `title` = '" + titl + "', `company` = '" + compan + "', `qualificationlevel` = '" + qualle + "', `source` = '" + sourc +
+     "',`category` = '" + categor +"', `firstname` = '" + firstnam +"',`lastname` = '" + lastnam +"',`priority` = '" + priorit +"',`owner` = '" + owne +"',`status` = '"+ statu +"' WHERE `id` = '" + Sid + "'";
+//console.log(query);
+    db.query(query, (err, result) => {
+       
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('/home');
+    });
+};
+exports.deleteleadrecord = function (req, res) {
+
+    let Sid = req.params.i;
+    let deleteUserQuery = 'DELETE FROM lead WHERE id = "' + Sid + '"';
+    db.query(deleteUserQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).json(result);
+    });
+}
+exports.deleteleaddisplay = function (req, res) {
+
+    
+    var Sid= req.params.i;
+   
+   let query='select * from lead where id="'+Sid+'" '; 
+   
+   db.query(query, (err, result) => {
+       if (err) {
+           return res.status(500).send(err);
+       }
+       res.status(200).json(result);
+               
+   });
+  
+  };
+
 exports.getEmpPage = function (req, res) {
 
 
@@ -93,9 +166,8 @@ exports.addLead = function (req, res) {
     let priority = req.body.priority;
     let owner = req.body.owner;
 
-             let query = "INSERT INTO `lead` (title,company,firstname,lastname,status,qualificationlevel,source,category,priority,owner) VALUES ('" +
-            title + "', '" + company + "', '" + firstname + "', '" + lastname + "','" + status + "','" + qul +
-             "',  '" + source + "',  '" + category + "',  '" + priority + "',  '" + owner + "')";
+let query = "INSERT INTO `socka`.`lead` (title,company,firstname,lastname,status,qualificationlevel,source,category,priority,owner) VALUES ('" +
+    title + "', '" + company + "', '" + firstname + "', '" + lastname + "','" + status + "','" + qul + "',  '" + source + "',  '" + category + "',  '" + priority + "',  '" + owner + "')";
 
        
     db.query(query, (err, result) => {

@@ -3,7 +3,7 @@
   {
     "sampleservice": {
       "protocol": "https",
-      "port": 9090,
+      "port": 8787,
       "hostname": "10.20.20.12",
       "description": "REST END POINT For Sample Service.",
       "configfilepath": "./appconfig.json",
