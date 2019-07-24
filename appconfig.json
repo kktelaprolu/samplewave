@@ -224,7 +224,63 @@
         }
       ]
     },
+    {
+      "route": "/contact/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "recorddisplay",
+      "description": "Routes to display record value in modal",
+      "examples": [
+        {
+          "param": "/contact/:i"
+        }
+      ]
+    }, 
     
+    
+     {
+       "route": "/contact/:i",
+       "type": "put",
+       "configured": true,
+       "routeclass": "./sampleservice.js",
+       "routefunction": "updatecontact",
+       "description": "Routes to update record value in table",
+       "examples": [
+      {
+       "param": "/contact/:i"
+      }
+    ]
+    },
+
+    {
+      "route": "/contact/:i",
+      "type": "delete",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deletecont",
+      "description": "Delete contact details choosen",
+      "examples": [
+        {
+          "param": "/contact/:i"
+        }
+      ]
+    },
+
+    {
+      "route": "/delete/:i",
+      "type": "get",
+      "configured": true,
+      "routeclass": "./sampleservice.js",
+      "routefunction": "deletedisplay",
+      "description": "Routes to display record value in modal",
+      "examples": [
+        {
+          "param": "/contact/:i"
+        }
+      ]
+    }, 
+
     {
       "route": "/account",
       "type": "post",
@@ -543,6 +599,7 @@
         }
       ]
     },
+
     {
       "route": "/sampleservice/something/:value1/:value2",
       "type": "get",
