@@ -2,7 +2,7 @@
   "services": 
   {
     "sampleservice": {
-      "protocol": "https,
+      "protocol": "http,
 <<<<<<< HEAD
       "port": 8787,
       "hostname": "10.20.20.12",
